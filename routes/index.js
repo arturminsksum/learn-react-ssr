@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import App from '../app/components/App';
+import template from '../app/template';
+
 const Article = require('../mongoose/models/article');
 const controllers = require('../passport/controllers');
 
@@ -14,7 +19,17 @@ router.use(function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'See articles' });
+  const appString = renderToString(<App />);
+  // res.render('index', {
+  //   body: appString,
+  //   title: 'See articles',
+  // });
+  res.send(
+    template({
+      body: appString,
+      title: 'See articles',
+    }),
+  );
 });
 
 // Auth system
