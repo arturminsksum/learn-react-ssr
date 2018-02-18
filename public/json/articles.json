@@ -1,0 +1,41 @@
+[
+  {
+    "id": "the-verge",
+    "source": "The Verge",
+    "author": "Thuy Ong",
+    "title": "Facebook begins privacy push ahead of tough new European law",
+    "description":
+      "Facebook’s new privacy center tool is a response the upcoming General Data Protection Regulation which will be introduced in May",
+    "url":
+      "https://www.theverge.com/2018/1/29/16944304/facebook-privacy-eu-law-general-data-protection-regulation",
+    "urlToImage":
+      "https://cdn.vox-cdn.com/thumbor/FQYYmGkfUAzxuJyhX3di-vw9soQ=/0x146:2040x1214/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/3446688/facebook-stock-1102.0.jpg",
+    "publishedAt": "2018-01-29T12:10:18Z"
+  },
+  {
+    "id": "the-next-web",
+    "source": "The Next Web",
+    "author": "Mix",
+    "title": "We got a cryptocurrency mystery box – but you probably shouldn't",
+    "description":
+      "Earlier in January we wrote about a quirky new trend: cryptocurrency mystery boxes you can order online to get a random selection of digital coins.\r\n\r\nCBlocks – the company we spoke ...",
+    "url":
+      "https://thenextweb.com/hardfork/2018/01/29/cryptocurrency-mystery-box-review/",
+    "urlToImage":
+      "https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/01/cryptocurrency-1.png",
+    "publishedAt": "2018-01-29T11:49:06Z"
+  },
+  {
+    "id": "abc-news",
+    "source": "ABC News",
+    "author": "ABC",
+    "title": "Rousey's WWE deal gets ex-UFC star back in bright spotlight",
+    "description":
+      "Ronda Rousey stayed silent as she pointed from the ring toward the WrestleMania logo that hung in the rafters. Without saying a word, the MMA great made clear she was signaling her wrestling debut at WWE's signature event. Rousey wants her WrestleMania moment…",
+    "url":
+      "http://abcnews.go.com/Entertainment/wireStory/rouseys-wwe-deal-ufc-star-back-bright-spotlight-52691202",
+    "urlToImage":
+      "http://a.abcnews.com/images/Entertainment/WireAP_18f9d8b3c72e4d94a0cc6332ee8924cd_16x9_992.jpg",
+    "publishedAt": "2018-01-29T22:01:09Z"
+  }
+]

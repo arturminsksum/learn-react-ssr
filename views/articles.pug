@@ -1,0 +1,59 @@
+extends layout
+
+block content
+
+  for item in articles
+    article.media.box
+      figure.media-left
+        p.image.is-64x64
+          img(src=item.urlToImage)
+      .media-content
+        .content
+          a.title(href=item.url)=item.title
+          p
+            span=item.description
+          p
+            strong Source: #{item.source}
+            br
+            small Author: #{item.author}
+            br
+            small Time: #{item.publishedAt}
+
+  .columns
+    .column.is-one-third
+      form(method='post')
+        .field
+          label.label Subject
+          .control
+            .select
+              select(name="id")
+                option(value='the-verge') The Verge
+                option(value='the-next-web') The Next Web
+                option(value='abc-news' selected) ABC News
+        .field
+          label.label Source
+          .control
+            input.input(type='text', placeholder='Source', name="source", value='ABC News')
+        .field
+          label.label Author
+          .control
+            input.input(type='text', placeholder='Author', name="author", value='ABC News')
+        .field
+          label.label Title
+          .control
+            input.input(type='text', placeholder='Title', name="title", value='WATCH: What to know about the water challenge')
+        .field
+          label.label Description
+          .control
+            textarea.textarea(placeholder='Description', name="description") Dr. Jennifer Ashton kicks off a month-long "Water Challenge" to look at how drinking more water can affect your health.
+        .field
+          label.label Link to article
+          .control
+            input.input(type='text', placeholder='Title', name="url", value='http://abcnews.go.com/GMA/video/water-challenge-52783678')
+        .field
+          label.label Link to image
+          .control
+            input.input(type='text', placeholder='Title', name="urlToImage", value='http://a.abcnews.com/images/GMA/180202_gma_ashton_16x9_992.jpg')
+        .field
+          .control
+            button.button.is-primary(type='submit') Submit
