@@ -7,7 +7,7 @@ export default class App extends Component {
     return (
       <React.Fragment>
         <Header />
-        Hello world!!!
+        Hello world!!
         <Footer />
       </React.Fragment>
     );
