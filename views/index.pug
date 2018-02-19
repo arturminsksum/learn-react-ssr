@@ -1,41 +1,39 @@
 extends layout
 
 block content
-  a(href="/articles")=title
   #root=body
-  br
-  br
-  .columns
-    .column.is-one-third
-      form.box(method='post', action='/register')
-        p.title Register
-        .field
-          p.control
-            input.input(type='email', placeholder='Email', name="email")
-        .field
-          p.control
-            input.input(type='password', placeholder='Password', name="password")
-        .field
-          p.control
-            button.button.is-success
-              | Register
-    .column.is-one-third
-      form.box(method='post', action='/login')
-        p.title Login
-        .field
-          p.control
-            input.input(type='email', placeholder='Email', name="email")
-        .field
-          p.control
-            input.input(type='password', placeholder='Password', name="password")
-        .field
-          p.control
-            button.button.is-success
-              | Login
-    .column.is-one-third
-      form.box(method='get', action='/logout')
-        p.title Logout
-         .field
-          p.control
-            button.button.is-success
-              | Logout
+  //- a(href="/articles")=title
+  //- .columns
+  //-   .column.is-one-third
+  //-     form.box(method='post', action='/register')
+  //-       p.title Register
+  //-       .field
+  //-         p.control
+  //-           input.input(type='email', placeholder='Email', name="email")
+  //-       .field
+  //-         p.control
+  //-           input.input(type='password', placeholder='Password', name="password")
+  //-       .field
+  //-         p.control
+  //-           button.button.is-success
+  //-             | Register
+  //-   .column.is-one-third
+  //-     form.box(method='post', action='/login')
+  //-       p.title Login
+  //-       .field
+  //-         p.control
+  //-           input.input(type='email', placeholder='Email', name="email")
+  //-       .field
+  //-         p.control
+  //-           input.input(type='password', placeholder='Password', name="password")
+  //-       .field
+  //-         p.control
+  //-           button.button.is-success
+  //-             | Login
+  //-   .column.is-one-third
+  //-     form.box(method='get', action='/logout')
+  //-       p.title Logout
+  //-        .field
+  //-         p.control
+  //-           button.button.is-success
+  //-             | Logout

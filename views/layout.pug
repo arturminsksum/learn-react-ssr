@@ -4,29 +4,5 @@ html
     title= title
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css')
   body
-    nav.navbar(role='navigation', aria-label='main navigation')
-      .navbar-brand
-        a.navbar-item.title(href='')
-          | ArchiNews
-    section.hero.is-primary
-      .hero-body
-        .container
-          h1.title
-            | Choose your channel
-          h2.subtitle
-            | All sources with English news
-    .container
-      block content
-
-    footer.footer
-      .container
-        .content.has-text-centered
-          p
-            strong ArchiNews
-            |  by
-            a(href='') Artur Minsk
-            | . The source code is licensed
-            a(href='http://opensource.org/licenses/mit-license.php') MIT
-            | . The website content is provided by
-            a(href='https://newsapi.org/') News API
-            | .
+    block content
+    script(src="bundle.js")

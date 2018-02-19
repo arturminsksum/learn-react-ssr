@@ -7,6 +7,7 @@ const passport = require('./passport');
 
 const app = express();
 
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
