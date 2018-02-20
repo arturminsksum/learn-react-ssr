@@ -1,5 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const User = require('../mongoose/models/user');
 
 passport.use(
   new LocalStrategy(
