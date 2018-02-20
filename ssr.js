@@ -239,6 +239,7 @@ module.exports = require("express-session");
 
 var passport = __webpack_require__(11);
 var LocalStrategy = __webpack_require__(12).Strategy;
+var User = __webpack_require__(21);
 
 passport.use(new LocalStrategy({
   usernameField: 'email',
@@ -359,6 +360,10 @@ var _header = __webpack_require__(16);
 
 var _header2 = _interopRequireDefault(_header);
 
+var _main = __webpack_require__(26);
+
+var _main2 = _interopRequireDefault(_main);
+
 var _footer = __webpack_require__(17);
 
 var _footer2 = _interopRequireDefault(_footer);
@@ -387,7 +392,7 @@ var App = function (_Component) {
         _react2.default.Fragment,
         null,
         _react2.default.createElement(_header2.default, null),
-        'Hello world!!',
+        _react2.default.createElement(_main2.default, null),
         _react2.default.createElement(_footer2.default, null)
       );
     }
@@ -417,7 +422,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function () {
   return _react2.default.createElement(
-    _react2.default.Fragment,
+    _react.Fragment,
     null,
     _react2.default.createElement(
       "nav",
@@ -476,45 +481,41 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function () {
   return _react2.default.createElement(
-    _react2.default.Fragment,
-    null,
+    "footer",
+    { className: "footer" },
     _react2.default.createElement(
-      "footer",
-      { className: "footer" },
+      "div",
+      { className: "container" },
       _react2.default.createElement(
         "div",
-        { className: "container" },
+        { className: "content has-text-centered" },
         _react2.default.createElement(
-          "div",
-          { className: "content has-text-centered" },
+          "p",
+          null,
           _react2.default.createElement(
-            "p",
+            "strong",
             null,
-            _react2.default.createElement(
-              "strong",
-              null,
-              "ArchiNews"
-            ),
-            " by",
-            _react2.default.createElement(
-              "a",
-              { href: "" },
-              "Artur Minsk"
-            ),
-            ". The source code is licensed",
-            _react2.default.createElement(
-              "a",
-              { href: "http://opensource.org/licenses/mit-license.php" },
-              "MIT"
-            ),
-            ". The website content is provided by",
-            _react2.default.createElement(
-              "a",
-              { href: "https://newsapi.org/" },
-              "News API"
-            ),
-            "."
-          )
+            "ArchiNews"
+          ),
+          " by",
+          _react2.default.createElement(
+            "a",
+            { href: "" },
+            "Artur Minsk"
+          ),
+          ". The source code is licensed",
+          _react2.default.createElement(
+            "a",
+            { href: "http://opensource.org/licenses/mit-license.php" },
+            "MIT"
+          ),
+          ". The website content is provided by",
+          _react2.default.createElement(
+            "a",
+            { href: "https://newsapi.org/" },
+            "News API"
+          ),
+          "."
         )
       )
     )
@@ -553,7 +554,7 @@ module.exports = require("mongoose");
 
 
 var User = __webpack_require__(21);
-
+var passport = __webpack_require__(10);
 // Здесь мы проверяем, передаем данные о пользователе в функцию верификации, котоую мы определили выше.
 // Вообще, passport.authenticate() вызывает метод req.logIn автоматически, здесь же я указал это явно. Это добавляет удобство в отладке. Например, можно вставить сюда console.log(), чтобы посмотреть, что происходит...
 // При удачной авторизации данные пользователя будут храниться в req.user
@@ -731,6 +732,145 @@ var ensureLoggedIn = function ensureLoggedIn(req, res, next) {
 };
 
 module.exports = ensureLoggedIn;
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _post = __webpack_require__(27);
+
+var _post2 = _interopRequireDefault(_post);
+
+var _state = __webpack_require__(28);
+
+var _state2 = _interopRequireDefault(_state);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Main = function (_Component) {
+  _inherits(Main, _Component);
+
+  function Main(props) {
+    _classCallCheck(this, Main);
+
+    var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
+
+    _this.state = {
+      articles: _state2.default
+    };
+    return _this;
+  }
+
+  _createClass(Main, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        this.state.articles.map(function (post, index) {
+          return _react2.default.createElement(_post2.default, { item: post, key: index });
+        })
+      );
+    }
+  }]);
+
+  return Main;
+}(_react.Component);
+
+exports.default = Main;
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (props) {
+  return _react2.default.createElement(
+    "article",
+    { className: "media box" },
+    _react2.default.createElement(
+      "div",
+      { className: "media-content" },
+      _react2.default.createElement(
+        "div",
+        { className: "content" },
+        _react2.default.createElement(
+          "a",
+          { className: "title", href: props.item.url },
+          props.item.title
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          _react2.default.createElement(
+            "span",
+            null,
+            props.item.description
+          )
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          _react2.default.createElement(
+            "strong",
+            null,
+            "Source: ",
+            props.item.source
+          ),
+          _react2.default.createElement(
+            "small",
+            null,
+            "Author: ",
+            props.item.author
+          ),
+          _react2.default.createElement(
+            "small",
+            null,
+            "Time: ",
+            props.item.publishedAt
+          )
+        )
+      )
+    )
+  );
+};
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+module.exports = [{"id":"the-verge","source":"The Verge","author":"Thuy Ong","title":"Facebook begins privacy push ahead of tough new European law","description":"Facebook’s new privacy center tool is a response the upcoming General Data Protection Regulation which will be introduced in May","url":"https://www.theverge.com/2018/1/29/16944304/facebook-privacy-eu-law-general-data-protection-regulation","publishedAt":"2018-01-29T12:10:18Z"},{"id":"the-next-web","source":"The Next Web","author":"Mix","title":"We got a cryptocurrency mystery box – but you probably shouldn't","description":"Earlier in January we wrote about a quirky new trend: cryptocurrency mystery boxes you can order online to get a random selection of digital coins.\r\n\r\nCBlocks – the company we spoke ...","url":"https://thenextweb.com/hardfork/2018/01/29/cryptocurrency-mystery-box-review/","publishedAt":"2018-01-29T11:49:06Z"},{"id":"abc-news","source":"ABC News","author":"ABC","title":"Rousey's WWE deal gets ex-UFC star back in bright spotlight","description":"Ronda Rousey stayed silent as she pointed from the ring toward the WrestleMania logo that hung in the rafters. Without saying a word, the MMA great made clear she was signaling her wrestling debut at WWE's signature event. Rousey wants her WrestleMania moment…","url":"http://abcnews.go.com/Entertainment/wireStory/rouseys-wwe-deal-ufc-star-back-bright-spotlight-52691202","publishedAt":"2018-01-29T22:01:09Z"}]
 
 /***/ })
 /******/ ]);

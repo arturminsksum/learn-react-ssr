@@ -6,7 +6,8 @@
   "scripts": {
     "client": "webpack",
     "server": "webpack --config webpack.config.ssr.js",
-    "start": "nodemon ssr.js"
+    "start": "nodemon ssr.js",
+    "babel": "nodemon server.js --exec babel-node"
   },
   "author": "",
   "license": "ISC",

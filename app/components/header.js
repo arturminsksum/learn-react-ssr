@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 export default () => (
-  <React.Fragment>
+  <Fragment>
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item title" href="/">
@@ -17,5 +17,5 @@ export default () => (
         </div>
       </div>
     </section>
-  </React.Fragment>
+  </Fragment>
 );

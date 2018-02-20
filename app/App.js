@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './components/header';
+import Main from './components/main';
 import Footer from './components/footer';
 
 export default class App extends Component {
@@ -7,7 +8,7 @@ export default class App extends Component {
     return (
       <React.Fragment>
         <Header />
-        Hello world!!
+        <Main />
         <Footer />
       </React.Fragment>
     );
