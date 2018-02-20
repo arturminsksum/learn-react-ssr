@@ -18283,11 +18283,11 @@ var _header = __webpack_require__(28);
 
 var _header2 = _interopRequireDefault(_header);
 
-var _main = __webpack_require__(30);
+var _main = __webpack_require__(29);
 
 var _main2 = _interopRequireDefault(_main);
 
-var _footer = __webpack_require__(29);
+var _footer = __webpack_require__(32);
 
 var _footer2 = _interopRequireDefault(_footer);
 
@@ -18396,6 +18396,281 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _post = __webpack_require__(30);
+
+var _post2 = _interopRequireDefault(_post);
+
+var _state = __webpack_require__(31);
+
+var _state2 = _interopRequireDefault(_state);
+
+var _input = __webpack_require__(33);
+
+var _input2 = _interopRequireDefault(_input);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Main = function (_Component) {
+  _inherits(Main, _Component);
+
+  function Main(props) {
+    _classCallCheck(this, Main);
+
+    var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
+
+    _this.state = {
+      articles: _state2.default,
+      post: {
+        id: 'abc-news',
+        source: 'ABC News',
+        author: 'ABC News',
+        title: 'WATCH: What to know about the water challenge',
+        description: "Dr. Jennifer Ashton kicks off a month-long 'Water Challenge' to look at how drinking more water can affect your health.",
+        url: 'http://abcnews.go.com/GMA/video/water-challenge-52783678'
+      }
+    };
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    return _this;
+  }
+
+  _createClass(Main, [{
+    key: 'handleChange',
+    value: function handleChange(event) {
+      var target = event.target;
+      var value = target.value;
+      var name = target.name;
+
+      this.setState({
+        post: _extends({}, this.state.post, _defineProperty({}, name, value))
+      });
+    }
+  }, {
+    key: 'handleSubmit',
+    value: function handleSubmit(event) {
+      event.preventDefault();
+      this.setState({
+        articles: [].concat(_toConsumableArray(this.state.articles), [this.state.post])
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        this.state.articles.map(function (post, index) {
+          return _react2.default.createElement(_post2.default, { item: post, key: index });
+        }),
+        _react2.default.createElement(
+          'div',
+          { className: 'columns' },
+          _react2.default.createElement(
+            'div',
+            { className: 'column is-half is-offset-one-quarter' },
+            _react2.default.createElement(
+              'form',
+              { onSubmit: this.handleSubmit },
+              _react2.default.createElement(
+                'div',
+                { className: 'field' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'label' },
+                  'Subject'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'control' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'select' },
+                    _react2.default.createElement(
+                      'select',
+                      {
+                        name: 'id',
+                        value: this.state.post.id,
+                        onChange: this.handleChange
+                      },
+                      _react2.default.createElement(
+                        'option',
+                        { value: 'the-verge' },
+                        'The Verge'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        { value: 'the-next-web' },
+                        'The Next Web'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        { value: 'abc-news' },
+                        'ABC News'
+                      )
+                    )
+                  )
+                )
+              ),
+              _react2.default.createElement(_input2.default, {
+                label: 'Source',
+                name: 'source',
+                onChange: this.handleChange,
+                value: this.state.post.source
+              }),
+              _react2.default.createElement(_input2.default, {
+                label: 'Author',
+                name: 'author',
+                onChange: this.handleChange,
+                value: this.state.post.author
+              }),
+              _react2.default.createElement(_input2.default, {
+                label: 'Title',
+                name: 'title',
+                onChange: this.handleChange,
+                value: this.state.post.title
+              }),
+              _react2.default.createElement(_input2.default, {
+                label: 'Description',
+                name: 'description',
+                onChange: this.handleChange,
+                value: this.state.post.description
+              }),
+              _react2.default.createElement(_input2.default, {
+                label: 'Link to article',
+                name: 'url',
+                onChange: this.handleChange,
+                value: this.state.post.url
+              }),
+              _react2.default.createElement(
+                'div',
+                { className: 'field' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'control has-text-centered' },
+                  _react2.default.createElement(
+                    'button',
+                    { type: 'submit', className: 'button is-primary' },
+                    'Add'
+                  )
+                )
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return Main;
+}(_react.Component);
+
+exports.default = Main;
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (props) {
+  return _react2.default.createElement(
+    "article",
+    { className: "media box" },
+    _react2.default.createElement(
+      "div",
+      { className: "media-content" },
+      _react2.default.createElement(
+        "div",
+        { className: "content" },
+        _react2.default.createElement(
+          "a",
+          { className: "title", href: props.item.url },
+          props.item.title
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          _react2.default.createElement(
+            "span",
+            null,
+            props.item.description
+          )
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          _react2.default.createElement(
+            "strong",
+            null,
+            "Source: ",
+            props.item.source,
+            " "
+          ),
+          _react2.default.createElement(
+            "small",
+            null,
+            "Author: ",
+            props.item.author,
+            " "
+          ),
+          _react2.default.createElement(
+            "small",
+            null,
+            "Time: ",
+            props.item.publishedAt
+          )
+        )
+      )
+    )
+  );
+};
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports) {
+
+module.exports = [{"id":"the-verge","source":"The Verge","author":"Thuy Ong","title":"Facebook begins privacy push ahead of tough new European law","description":"Facebook’s new privacy center tool is a response the upcoming General Data Protection Regulation which will be introduced in May","url":"https://www.theverge.com/2018/1/29/16944304/facebook-privacy-eu-law-general-data-protection-regulation","publishedAt":"2018-01-29T12:10:18Z"},{"id":"the-next-web","source":"The Next Web","author":"Mix","title":"We got a cryptocurrency mystery box – but you probably shouldn't","description":"Earlier in January we wrote about a quirky new trend: cryptocurrency mystery boxes you can order online to get a random selection of digital coins.\r\n\r\nCBlocks – the company we spoke ...","url":"https://thenextweb.com/hardfork/2018/01/29/cryptocurrency-mystery-box-review/","publishedAt":"2018-01-29T11:49:06Z"},{"id":"abc-news","source":"ABC News","author":"ABC","title":"Rousey's WWE deal gets ex-UFC star back in bright spotlight","description":"Ronda Rousey stayed silent as she pointed from the ring toward the WrestleMania logo that hung in the rafters. Without saying a word, the MMA great made clear she was signaling her wrestling debut at WWE's signature event. Rousey wants her WrestleMania moment…","url":"http://abcnews.go.com/Entertainment/wireStory/rouseys-wwe-deal-ufc-star-back-bright-spotlight-52691202","publishedAt":"2018-01-29T22:01:09Z"}]
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
@@ -18446,72 +18721,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _post = __webpack_require__(31);
-
-var _post2 = _interopRequireDefault(_post);
-
-var _state = __webpack_require__(32);
-
-var _state2 = _interopRequireDefault(_state);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Main = function (_Component) {
-  _inherits(Main, _Component);
-
-  function Main(props) {
-    _classCallCheck(this, Main);
-
-    var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
-
-    _this.state = {
-      articles: _state2.default
-    };
-    return _this;
-  }
-
-  _createClass(Main, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        { className: 'container' },
-        this.state.articles.map(function (post, index) {
-          return _react2.default.createElement(_post2.default, { item: post, key: index });
-        })
-      );
-    }
-  }]);
-
-  return Main;
-}(_react.Component);
-
-exports.default = Main;
-
-/***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18527,62 +18737,36 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (props) {
+exports.default = function (_ref) {
+  var _ref$type = _ref.type,
+      type = _ref$type === undefined ? 'text' : _ref$type,
+      label = _ref.label,
+      name = _ref.name,
+      _ref$value = _ref.value,
+      value = _ref$value === undefined ? '' : _ref$value,
+      onChange = _ref.onChange;
   return _react2.default.createElement(
-    "article",
-    { className: "media box" },
+    'div',
+    { className: 'field' },
     _react2.default.createElement(
-      "div",
-      { className: "media-content" },
-      _react2.default.createElement(
-        "div",
-        { className: "content" },
-        _react2.default.createElement(
-          "a",
-          { className: "title", href: props.item.url },
-          props.item.title
-        ),
-        _react2.default.createElement(
-          "p",
-          null,
-          _react2.default.createElement(
-            "span",
-            null,
-            props.item.description
-          )
-        ),
-        _react2.default.createElement(
-          "p",
-          null,
-          _react2.default.createElement(
-            "strong",
-            null,
-            "Source: ",
-            props.item.source
-          ),
-          _react2.default.createElement(
-            "small",
-            null,
-            "Author: ",
-            props.item.author
-          ),
-          _react2.default.createElement(
-            "small",
-            null,
-            "Time: ",
-            props.item.publishedAt
-          )
-        )
-      )
+      'label',
+      { className: 'label' },
+      label
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'control' },
+      _react2.default.createElement('input', {
+        className: 'input',
+        type: 'text',
+        value: value,
+        placeholder: label,
+        name: name,
+        onChange: onChange
+      })
     )
   );
 };
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports) {
-
-module.exports = [{"id":"the-verge","source":"The Verge","author":"Thuy Ong","title":"Facebook begins privacy push ahead of tough new European law","description":"Facebook’s new privacy center tool is a response the upcoming General Data Protection Regulation which will be introduced in May","url":"https://www.theverge.com/2018/1/29/16944304/facebook-privacy-eu-law-general-data-protection-regulation","publishedAt":"2018-01-29T12:10:18Z"},{"id":"the-next-web","source":"The Next Web","author":"Mix","title":"We got a cryptocurrency mystery box – but you probably shouldn't","description":"Earlier in January we wrote about a quirky new trend: cryptocurrency mystery boxes you can order online to get a random selection of digital coins.\r\n\r\nCBlocks – the company we spoke ...","url":"https://thenextweb.com/hardfork/2018/01/29/cryptocurrency-mystery-box-review/","publishedAt":"2018-01-29T11:49:06Z"},{"id":"abc-news","source":"ABC News","author":"ABC","title":"Rousey's WWE deal gets ex-UFC star back in bright spotlight","description":"Ronda Rousey stayed silent as she pointed from the ring toward the WrestleMania logo that hung in the rafters. Without saying a word, the MMA great made clear she was signaling her wrestling debut at WWE's signature event. Rousey wants her WrestleMania moment…","url":"http://abcnews.go.com/Entertainment/wireStory/rouseys-wwe-deal-ufc-star-back-bright-spotlight-52691202","publishedAt":"2018-01-29T22:01:09Z"}]
 
 /***/ })
 /******/ ]);
