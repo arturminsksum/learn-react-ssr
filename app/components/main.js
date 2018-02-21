@@ -17,9 +17,11 @@ export default class Main extends Component {
           "Dr. Jennifer Ashton kicks off a month-long 'Water Challenge' to look at how drinking more water can affect your health.",
         url: 'http://abcnews.go.com/GMA/video/water-challenge-52783678',
       },
+      channel: 'all',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.chooseChannel = this.chooseChannel.bind(this);
   }
 
   handleChange(event) {
@@ -42,12 +44,38 @@ export default class Main extends Component {
     });
   }
 
+  chooseChannel(event) {
+    event.preventDefault();
+    this.setState({ channel: event.target.value });
+  }
+
   render() {
     return (
       <div className="container">
-        {this.state.articles.map((post, index) => (
-          <Post item={post} key={index} />
-        ))}
+        <div className="field">
+          <label className="label">Sort articles</label>
+          <div className="control">
+            <div className="select">
+              <select
+                name="id"
+                value={this.state.channel}
+                onChange={this.chooseChannel}
+              >
+                <option value="all">All</option>
+                <option value="the-verge">The Verge</option>
+                <option value="the-next-web">The Next Web</option>
+                <option value="abc-news">ABC News</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        {this.state.articles.map((post, index) => {
+          if (this.state.channel === 'all') {
+            return <Post item={post} key={index} />;
+          } else if (post.id === this.state.channel) {
+            return <Post item={post} key={index} />;
+          } else return;
+        })}
         <div className="columns">
           <div className="column is-half is-offset-one-quarter">
             <form onSubmit={this.handleSubmit}>

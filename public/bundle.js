@@ -18283,11 +18283,11 @@ var _header = __webpack_require__(28);
 
 var _header2 = _interopRequireDefault(_header);
 
-var _main = __webpack_require__(29);
+var _main = __webpack_require__(30);
 
 var _main2 = _interopRequireDefault(_main);
 
-var _footer = __webpack_require__(32);
+var _footer = __webpack_require__(29);
 
 var _footer2 = _interopRequireDefault(_footer);
 
@@ -18396,6 +18396,66 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+  return _react2.default.createElement(
+    "footer",
+    { className: "footer" },
+    _react2.default.createElement(
+      "div",
+      { className: "container" },
+      _react2.default.createElement(
+        "div",
+        { className: "content has-text-centered" },
+        _react2.default.createElement(
+          "p",
+          null,
+          _react2.default.createElement(
+            "strong",
+            null,
+            "ArchiNews"
+          ),
+          " by",
+          _react2.default.createElement(
+            "a",
+            { href: "" },
+            "Artur Minsk"
+          ),
+          ". The source code is licensed",
+          _react2.default.createElement(
+            "a",
+            { href: "http://opensource.org/licenses/mit-license.php" },
+            "MIT"
+          ),
+          ". The website content is provided by",
+          _react2.default.createElement(
+            "a",
+            { href: "https://newsapi.org/" },
+            "News API"
+          ),
+          "."
+        )
+      )
+    )
+  );
+};
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -18404,11 +18464,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _post = __webpack_require__(30);
+var _post = __webpack_require__(31);
 
 var _post2 = _interopRequireDefault(_post);
 
-var _state = __webpack_require__(31);
+var _state = __webpack_require__(32);
 
 var _state2 = _interopRequireDefault(_state);
 
@@ -18445,10 +18505,12 @@ var Main = function (_Component) {
         title: 'WATCH: What to know about the water challenge',
         description: "Dr. Jennifer Ashton kicks off a month-long 'Water Challenge' to look at how drinking more water can affect your health.",
         url: 'http://abcnews.go.com/GMA/video/water-challenge-52783678'
-      }
+      },
+      channel: 'all'
     };
     _this.handleChange = _this.handleChange.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.chooseChannel = _this.chooseChannel.bind(_this);
     return _this;
   }
 
@@ -18472,13 +18534,70 @@ var Main = function (_Component) {
       });
     }
   }, {
+    key: 'chooseChannel',
+    value: function chooseChannel(event) {
+      event.preventDefault();
+      this.setState({ channel: event.target.value });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'div',
         { className: 'container' },
+        _react2.default.createElement(
+          'div',
+          { className: 'field' },
+          _react2.default.createElement(
+            'label',
+            { className: 'label' },
+            'Sort articles'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'control' },
+            _react2.default.createElement(
+              'div',
+              { className: 'select' },
+              _react2.default.createElement(
+                'select',
+                {
+                  name: 'id',
+                  value: this.state.channel,
+                  onChange: this.chooseChannel
+                },
+                _react2.default.createElement(
+                  'option',
+                  { value: 'all' },
+                  'All'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: 'the-verge' },
+                  'The Verge'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: 'the-next-web' },
+                  'The Next Web'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: 'abc-news' },
+                  'ABC News'
+                )
+              )
+            )
+          )
+        ),
         this.state.articles.map(function (post, index) {
-          return _react2.default.createElement(_post2.default, { item: post, key: index });
+          if (_this2.state.channel === 'all') {
+            return _react2.default.createElement(_post2.default, { item: post, key: index });
+          } else if (post.id === _this2.state.channel) {
+            return _react2.default.createElement(_post2.default, { item: post, key: index });
+          } else return;
         }),
         _react2.default.createElement(
           'div',
@@ -18585,7 +18704,7 @@ var Main = function (_Component) {
 exports.default = Main;
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18655,70 +18774,10 @@ exports.default = function (props) {
 };
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports) {
 
 module.exports = [{"id":"the-verge","source":"The Verge","author":"Thuy Ong","title":"Facebook begins privacy push ahead of tough new European law","description":"Facebook’s new privacy center tool is a response the upcoming General Data Protection Regulation which will be introduced in May","url":"https://www.theverge.com/2018/1/29/16944304/facebook-privacy-eu-law-general-data-protection-regulation","publishedAt":"2018-01-29T12:10:18Z"},{"id":"the-next-web","source":"The Next Web","author":"Mix","title":"We got a cryptocurrency mystery box – but you probably shouldn't","description":"Earlier in January we wrote about a quirky new trend: cryptocurrency mystery boxes you can order online to get a random selection of digital coins.\r\n\r\nCBlocks – the company we spoke ...","url":"https://thenextweb.com/hardfork/2018/01/29/cryptocurrency-mystery-box-review/","publishedAt":"2018-01-29T11:49:06Z"},{"id":"abc-news","source":"ABC News","author":"ABC","title":"Rousey's WWE deal gets ex-UFC star back in bright spotlight","description":"Ronda Rousey stayed silent as she pointed from the ring toward the WrestleMania logo that hung in the rafters. Without saying a word, the MMA great made clear she was signaling her wrestling debut at WWE's signature event. Rousey wants her WrestleMania moment…","url":"http://abcnews.go.com/Entertainment/wireStory/rouseys-wwe-deal-ufc-star-back-bright-spotlight-52691202","publishedAt":"2018-01-29T22:01:09Z"}]
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function () {
-  return _react2.default.createElement(
-    "footer",
-    { className: "footer" },
-    _react2.default.createElement(
-      "div",
-      { className: "container" },
-      _react2.default.createElement(
-        "div",
-        { className: "content has-text-centered" },
-        _react2.default.createElement(
-          "p",
-          null,
-          _react2.default.createElement(
-            "strong",
-            null,
-            "ArchiNews"
-          ),
-          " by",
-          _react2.default.createElement(
-            "a",
-            { href: "" },
-            "Artur Minsk"
-          ),
-          ". The source code is licensed",
-          _react2.default.createElement(
-            "a",
-            { href: "http://opensource.org/licenses/mit-license.php" },
-            "MIT"
-          ),
-          ". The website content is provided by",
-          _react2.default.createElement(
-            "a",
-            { href: "https://newsapi.org/" },
-            "News API"
-          ),
-          "."
-        )
-      )
-    )
-  );
-};
 
 /***/ }),
 /* 33 */
