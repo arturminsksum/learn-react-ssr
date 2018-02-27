@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
 import Header from './components/header';
 import Main from './components/main';
 import Footer from './components/footer';
+import VisibleArticles from './containers/visible-articles';
 
-export default class App extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <Header />
-        <Main />
-        <Footer />
-      </React.Fragment>
-    );
-  }
-}
+const App = () => (
+  <Fragment>
+    <Header />
+    <VisibleArticles />
+    <Footer />
+  </Fragment>
+);
+
+export default App;

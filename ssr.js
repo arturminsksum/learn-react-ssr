@@ -320,6 +320,14 @@ var _react2 = _interopRequireDefault(_react);
 
 var _server = __webpack_require__(16);
 
+var _redux = __webpack_require__(37);
+
+var _reactRedux = __webpack_require__(32);
+
+var _reducers = __webpack_require__(38);
+
+var _reducers2 = _interopRequireDefault(_reducers);
+
 var _App = __webpack_require__(17);
 
 var _App2 = _interopRequireDefault(_App);
@@ -346,17 +354,25 @@ router.use(function (req, res, next) {
 });
 
 router.get('/', function (req, res, next) {
-  var appString = (0, _server.renderToString)(_react2.default.createElement(_App2.default, null));
-  res.render('index', {
-    body: appString,
-    title: 'See articles'
-  });
-  // res.send(
-  //   template({
-  //     body: appString,
-  //     title: 'See articles',
-  //   }),
-  // );
+  // Create a new Redux store instance
+  var store = (0, _redux.createStore)(_reducers2.default);
+
+  var html = (0, _server.renderToString)(_react2.default.createElement(
+    _reactRedux.Provider,
+    { store: store },
+    _react2.default.createElement(_App2.default, null)
+  ));
+
+  // Grab the initial state from our Redux store
+  var preloadedState = store.getState();
+
+  res.send((0, _template2.default)(html, preloadedState));
+
+  // res.render('index', {
+  //   title: 'See articles',
+  //   body: html,
+  //   preloadedState,
+  // });
 });
 
 // Auth system
@@ -383,8 +399,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -401,38 +415,21 @@ var _footer = __webpack_require__(23);
 
 var _footer2 = _interopRequireDefault(_footer);
 
+var _visibleArticles = __webpack_require__(34);
+
+var _visibleArticles2 = _interopRequireDefault(_visibleArticles);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var App = function (_Component) {
-  _inherits(App, _Component);
-
-  function App() {
-    _classCallCheck(this, App);
-
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-  }
-
-  _createClass(App, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        _react2.default.Fragment,
-        null,
-        _react2.default.createElement(_header2.default, null),
-        _react2.default.createElement(_main2.default, null),
-        _react2.default.createElement(_footer2.default, null)
-      );
-    }
-  }]);
-
-  return App;
-}(_react.Component);
+var App = function App() {
+  return _react2.default.createElement(
+    _react.Fragment,
+    null,
+    _react2.default.createElement(_header2.default, null),
+    _react2.default.createElement(_visibleArticles2.default, null),
+    _react2.default.createElement(_footer2.default, null)
+  );
+};
 
 exports.default = App;
 
@@ -451,6 +448,12 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _sortLink = __webpack_require__(31);
+
+var _sortLink2 = _interopRequireDefault(_sortLink);
+
+var _actions = __webpack_require__(30);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function () {
@@ -458,36 +461,64 @@ exports.default = function () {
     _react.Fragment,
     null,
     _react2.default.createElement(
-      "nav",
-      { className: "navbar", role: "navigation", "aria-label": "main navigation" },
+      'nav',
+      { className: 'navbar', role: 'navigation', 'aria-label': 'main navigation' },
       _react2.default.createElement(
-        "div",
-        { className: "navbar-brand" },
+        'div',
+        { className: 'navbar-brand' },
         _react2.default.createElement(
-          "a",
-          { className: "navbar-item title", href: "/" },
-          "ArchiNews"
+          'a',
+          { className: 'navbar-item title', href: '/' },
+          'ArchiNews'
         )
       )
     ),
     _react2.default.createElement(
-      "section",
-      { className: "hero is-primary" },
+      'section',
+      { className: 'hero is-primary' },
       _react2.default.createElement(
-        "div",
-        { className: "hero-body" },
+        'div',
+        { className: 'hero-body' },
         _react2.default.createElement(
-          "div",
-          { className: "container" },
+          'div',
+          { className: 'container' },
           _react2.default.createElement(
-            "h1",
-            { className: "title" },
-            "Choose your channel"
+            'h1',
+            { className: 'title' },
+            'Choose your channel'
           ),
           _react2.default.createElement(
-            "h2",
-            { className: "subtitle" },
-            "All sources with English news"
+            'h2',
+            { className: 'subtitle' },
+            'All sources with English news'
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            'Show: ',
+            _react2.default.createElement(
+              _sortLink2.default,
+              { sort: _actions.SortArticles.SHOW_ALL },
+              'All'
+            ),
+            ', ',
+            _react2.default.createElement(
+              _sortLink2.default,
+              { sort: _actions.SortArticles.SHOW_THE_VERGE },
+              'THE_VERGE'
+            ),
+            ', ',
+            _react2.default.createElement(
+              _sortLink2.default,
+              { sort: _actions.SortArticles.SHOW_THE_NEXT_WEB },
+              'THE_NEXT_WEB'
+            ),
+            ', ',
+            _react2.default.createElement(
+              _sortLink2.default,
+              { sort: _actions.SortArticles.SHOW_ABC_NEWS },
+              'ABC_NEWS'
+            )
           )
         )
       )
@@ -948,11 +979,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports.default = function (_ref) {
-  var body = _ref.body,
-      title = _ref.title;
-
-  return "\n    <!DOCTYPE html>\n    <html>\n      <head>\n        <title>" + title + "</title>\n      </head>\n\n      <body>\n        <div id=\"root\">" + body + "</div>\n      </body>\n    </html>\n  ";
+exports.default = function (html, preloadedState) {
+  return '\n      <!doctype html>\n      <html>\n        <head>\n          <meta charset=utf-8>\n          <title>ArchiNews</title>\n          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">\n        </head>\n        <body>\n          <div id="root">' + html + '</div>\n          <script>\n            window.PRELOADED_STATE = ' + JSON.stringify(preloadedState).replace(/</g, '\\u003c') + '\n          </script>\n          <script src="bundle.js"></script>\n        </body>\n      </html>\n  ';
 };
 
 /***/ }),
@@ -1114,6 +1142,299 @@ var ensureLoggedIn = function ensureLoggedIn(req, res, next) {
 };
 
 module.exports = ensureLoggedIn;
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var addPost = exports.addPost = function addPost(post) {
+  return {
+    type: 'ADD_POST',
+    post: post
+  };
+};
+
+var setSortArticles = exports.setSortArticles = function setSortArticles(sort) {
+  return {
+    type: 'SET_SORT_ARTICLES',
+    sort: sort
+  };
+};
+
+var SortArticles = exports.SortArticles = {
+  SHOW_ALL: 'SHOW_ALL',
+  SHOW_THE_VERGE: 'SHOW_THE_VERGE',
+  SHOW_THE_NEXT_WEB: 'SHOW_THE_NEXT_WEB',
+  SHOW_ABC_NEWS: 'SHOW_ABC_NEWS'
+};
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(32);
+
+var _actions = __webpack_require__(30);
+
+var _link = __webpack_require__(36);
+
+var _link2 = _interopRequireDefault(_link);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    active: ownProps.sort === state.sortArticles
+  };
+};
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    onClick: function onClick() {
+      dispatch((0, _actions.setSortArticles)(ownProps.sort));
+    }
+  };
+};
+var SortLink = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_link2.default);
+exports.default = SortLink;
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
+
+/***/ }),
+/* 33 */,
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(32);
+
+var _articles = __webpack_require__(35);
+
+var _articles2 = _interopRequireDefault(_articles);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var getVisibleArticles = function getVisibleArticles(articles, sort) {
+  switch (sort) {
+    case 'SHOW_ALL':
+      return articles;
+    case 'SHOW_THE_VERGE':
+      return articles.filter(function (post) {
+        return post.id === 'the-verge';
+      });
+    case 'SHOW_THE_NEXT_WEB':
+      return articles.filter(function (post) {
+        return post.id === 'the-next-web';
+      });
+    case 'SHOW_ABC_NEWS':
+      return articles.filter(function (post) {
+        return post.id === 'abc-news';
+      });
+  }
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    articles: getVisibleArticles(state.articles, state.sortArticles)
+  };
+};
+
+var VisibleArticles = (0, _reactRedux.connect)(mapStateToProps, null)(_articles2.default);
+
+exports.default = VisibleArticles;
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _post = __webpack_require__(20);
+
+var _post2 = _interopRequireDefault(_post);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (_ref) {
+  var articles = _ref.articles;
+  return _react2.default.createElement(
+    'section',
+    null,
+    articles.map(function (post, index) {
+      return _react2.default.createElement(_post2.default, { item: post, key: index });
+    })
+  );
+};
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (_ref) {
+  var active = _ref.active,
+      children = _ref.children,
+      _onClick = _ref.onClick;
+
+  if (active) {
+    return _react2.default.createElement(
+      "span",
+      null,
+      children
+    );
+  }
+  return _react2.default.createElement(
+    "a",
+    {
+      href: "",
+      onClick: function onClick(e) {
+        e.preventDefault();
+        _onClick();
+      }
+    },
+    children
+  );
+};
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports) {
+
+module.exports = require("redux");
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = __webpack_require__(37);
+
+var _articles = __webpack_require__(39);
+
+var _articles2 = _interopRequireDefault(_articles);
+
+var _sortArticles = __webpack_require__(40);
+
+var _sortArticles2 = _interopRequireDefault(_sortArticles);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var articlesApp = (0, _redux.combineReducers)({
+  articles: _articles2.default,
+  sortArticles: _sortArticles2.default
+});
+exports.default = articlesApp;
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _state = __webpack_require__(21);
+
+var _state2 = _interopRequireDefault(_state);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var articles = function articles() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _state2.default;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'ADD_POST':
+      return [].concat(_toConsumableArray(state), [{
+        id: action.post.id,
+        source: action.post.source,
+        author: action.post.author,
+        title: action.post.title,
+        description: action.post.description,
+        url: action.post.url
+      }]);
+    default:
+      return state;
+  }
+};
+exports.default = articles;
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var sortArticles = function sortArticles() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'SHOW_ALL';
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'SET_SORT_ARTICLES':
+      return action.sort;
+    default:
+      return state;
+  }
+};
+exports.default = sortArticles;
 
 /***/ })
 /******/ ]);

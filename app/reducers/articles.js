@@ -1,4 +1,6 @@
-const article = (state = [], action) => {
+import defaultState from '../state.json';
+
+const articles = (state = defaultState, action) => {
   switch (action.type) {
     case 'ADD_POST':
       return [
@@ -16,4 +18,4 @@ const article = (state = [], action) => {
       return state;
   }
 };
-export default article;
+export default articles;

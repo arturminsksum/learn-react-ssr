@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import articles from './articles';
 import sortArticles from './sort-articles';
-const todoApp = combineReducers({
+const articlesApp = combineReducers({
   articles,
   sortArticles,
 });
