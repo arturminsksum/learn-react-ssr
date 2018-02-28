@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react';
 import Header from './components/header';
-import Main from './components/main';
+import Sort from './components/sort';
 import Footer from './components/footer';
 import VisibleArticles from './containers/visible-articles';
 
 const App = () => (
   <Fragment>
     <Header />
+    <Sort />
     <VisibleArticles />
     <Footer />
   </Fragment>

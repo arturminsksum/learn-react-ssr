@@ -1,17 +1,23 @@
 import React from 'react';
 export default ({ active, children, onClick }) => {
   if (active) {
-    return <span>{children}</span>;
+    return (
+      <li className="is-active">
+        <a href="javascript:void(0)">{children}</a>
+      </li>
+    );
   }
   return (
-    <a
-      href=""
-      onClick={e => {
-        e.preventDefault();
-        onClick();
-      }}
-    >
-      {children}
-    </a>
+    <li>
+      <a
+        href=""
+        onClick={e => {
+          e.preventDefault();
+          onClick();
+        }}
+      >
+        {children}
+      </a>
+    </li>
   );
 };
