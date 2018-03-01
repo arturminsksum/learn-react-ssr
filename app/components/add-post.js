@@ -1,13 +1,12 @@
-import React, { Component, Fragment } from 'react';
-import Post from './post';
-import data from '../state.json';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Input from './input';
+import { addPost } from '../actions';
 
-export default class Main extends Component {
+class AddPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      articles: data,
       post: {
         id: 'abc-news',
         source: 'ABC News',
@@ -17,11 +16,9 @@ export default class Main extends Component {
           "Dr. Jennifer Ashton kicks off a month-long 'Water Challenge' to look at how drinking more water can affect your health.",
         url: 'http://abcnews.go.com/GMA/video/water-challenge-52783678',
       },
-      channel: 'all',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.chooseChannel = this.chooseChannel.bind(this);
   }
 
   handleChange(event) {
@@ -37,45 +34,26 @@ export default class Main extends Component {
     });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit(e) {
+    e.preventDefault();
+    // add post
+    this.props.onSubmit(this.state.post);
+    // clear all field
     this.setState({
-      articles: [...this.state.articles, this.state.post],
+      post: {
+        id: 'the-verge',
+        source: '',
+        author: '',
+        title: '',
+        description: '',
+        url: '',
+      },
     });
-  }
-
-  chooseChannel(event) {
-    event.preventDefault();
-    this.setState({ channel: event.target.value });
   }
 
   render() {
     return (
       <div className="container">
-        <div className="field">
-          <label className="label">Sort articles</label>
-          <div className="control">
-            <div className="select">
-              <select
-                name="id"
-                value={this.state.channel}
-                onChange={this.chooseChannel}
-              >
-                <option value="all">All</option>
-                <option value="the-verge">The Verge</option>
-                <option value="the-next-web">The Next Web</option>
-                <option value="abc-news">ABC News</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        {this.state.articles.map((post, index) => {
-          if (this.state.channel === 'all') {
-            return <Post item={post} key={index} />;
-          } else if (post.id === this.state.channel) {
-            return <Post item={post} key={index} />;
-          } else return;
-        })}
         <div className="columns">
           <div className="column is-half is-offset-one-quarter">
             <form onSubmit={this.handleSubmit}>
@@ -135,7 +113,19 @@ export default class Main extends Component {
             </form>
           </div>
         </div>
+        <br />
       </div>
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubmit: post => {
+      dispatch(addPost(post));
+    },
+  };
+};
+
+AddPost = connect(null, mapDispatchToProps)(AddPost);
+export default AddPost;
