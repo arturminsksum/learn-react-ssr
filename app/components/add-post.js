@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import Input from './input';
 import { addPost } from '../actions';
 
@@ -127,5 +128,5 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-AddPost = connect(null, mapDispatchToProps)(AddPost);
+AddPost = withRouter(connect(null, mapDispatchToProps)(AddPost));
 export default AddPost;

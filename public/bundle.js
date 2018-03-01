@@ -2012,6 +2012,8 @@ var _link = __webpack_require__(77);
 
 var _link2 = _interopRequireDefault(_link);
 
+var _reactRouterDom = __webpack_require__(108);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
@@ -2026,7 +2028,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     }
   };
 };
-var SortLink = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_link2.default);
+var SortLink = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_link2.default));
 exports.default = SortLink;
 
 /***/ }),
@@ -21683,6 +21685,8 @@ var _articles = __webpack_require__(81);
 
 var _articles2 = _interopRequireDefault(_articles);
 
+var _reactRouterDom = __webpack_require__(108);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var getVisibleArticles = function getVisibleArticles(articles, sort) {
@@ -21710,7 +21714,7 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-var VisibleArticles = (0, _reactRedux.connect)(mapStateToProps, null)(_articles2.default);
+var VisibleArticles = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(_articles2.default));
 
 exports.default = VisibleArticles;
 
@@ -21837,6 +21841,8 @@ var _react = __webpack_require__(1);
 var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(9);
+
+var _reactRouterDom = __webpack_require__(108);
 
 var _input = __webpack_require__(84);
 
@@ -22023,7 +22029,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-AddPost = (0, _reactRedux.connect)(null, mapDispatchToProps)(AddPost);
+AddPost = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(null, mapDispatchToProps)(AddPost));
 exports.default = AddPost;
 
 /***/ }),

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { setSortArticles } from '../actions';
 import Link from '../components/link';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -14,5 +15,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
   };
 };
-const SortLink = connect(mapStateToProps, mapDispatchToProps)(Link);
+const SortLink = withRouter(connect(mapStateToProps, mapDispatchToProps)(Link));
 export default SortLink;
