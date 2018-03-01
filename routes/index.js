@@ -5,6 +5,8 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { StaticRouter } from 'react-router-dom';
+
 import articlesApp from '../app/reducers';
 import App from '../app/App';
 import template from '../app/template';
@@ -21,15 +23,23 @@ router.use(function(req, res, next) {
   next();
 });
 
-router.get('/', function(req, res, next) {
+router.get('/*', function(req, res, next) {
   // Create a new Redux store instance
   const store = createStore(articlesApp);
+  const context = {};
 
   const html = renderToString(
     <Provider store={store}>
-      <App />
+      <StaticRouter location={req.url} context={context}>
+        <App />
+      </StaticRouter>
     </Provider>,
   );
+
+  if (context.url) {
+    // Somewhere a `<Redirect>` was rendered
+    return res.redirect(context.url);
+  }
 
   // Grab the initial state from our Redux store
   const preloadedState = store.getState();
