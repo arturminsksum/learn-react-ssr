@@ -713,6 +713,11 @@ exports.default = function () {
           _reactRouterDom.Link,
           { className: 'navbar-item', to: '/login' },
           'LogIn'
+        ),
+        _react2.default.createElement(
+          'a',
+          { className: 'navbar-item', href: '/api/logout' },
+          'LogOut'
         )
       )
     ),

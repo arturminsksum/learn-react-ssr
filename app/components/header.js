@@ -22,6 +22,9 @@ export default () => (
         <Link className="navbar-item" to="/login">
           LogIn
         </Link>
+        <a className="navbar-item" href="/api/logout">
+          LogOut
+        </a>
       </div>
     </nav>
     <section className="hero is-primary">
