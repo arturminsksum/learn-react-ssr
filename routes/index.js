@@ -12,8 +12,7 @@ import App from '../app/App';
 import template from '../app/template';
 
 const logger = require('../logger');
-const helpers = require('../helpers');
-const fullUrl = helpers.fullUrl;
+import { fullUrl } from '../helpers';
 
 router.use(function(req, res, next) {
   logger.info(fullUrl(req));

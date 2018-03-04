@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Articles from '../components/articles';
 import { withRouter } from 'react-router-dom';
+import { requestArticles } from '../actions';
 
 const getVisibleArticles = (articles, sort) => {
   switch (sort) {
@@ -15,12 +16,14 @@ const getVisibleArticles = (articles, sort) => {
   }
 };
 
-const mapStateToProps = state => {
-  return {
-    articles: getVisibleArticles(state.articles, state.sortArticles),
-  };
+const mapStateToProps = state => ({
+  articles: getVisibleArticles(state.articles, state.sortArticles),
+});
+
+const mapDispatchToProps = {
+  requestArticles,
 };
 
-const VisibleArticles = withRouter(connect(mapStateToProps, null)(Articles));
+const VisibleArticles = connect(mapStateToProps, mapDispatchToProps)(Articles);
 
 export default VisibleArticles;

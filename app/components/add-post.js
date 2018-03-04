@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Input from './input';
-import { addPost } from '../actions';
+import { requestArticles, sendPost } from '../actions';
 
 class AddPost extends Component {
   constructor(props) {
@@ -38,7 +38,8 @@ class AddPost extends Component {
   handleSubmit(e) {
     e.preventDefault();
     // add post
-    this.props.onSubmit(this.state.post);
+    sendPost(this.state.post);
+    this.props.requestArticles();
     // clear all field
     this.setState({
       post: {
@@ -120,12 +121,8 @@ class AddPost extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onSubmit: post => {
-      dispatch(addPost(post));
-    },
-  };
+const mapDispatchToProps = {
+  requestArticles,
 };
 
 AddPost = withRouter(connect(null, mapDispatchToProps)(AddPost));

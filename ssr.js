@@ -91,12 +91,29 @@ module.exports = require("react-redux");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var addPost = exports.addPost = function addPost(post) {
-  return {
-    type: 'ADD_POST',
-    post: post
-  };
+exports.receiveArticles = exports.requestArticles = exports.SortArticles = exports.setSortArticles = exports.sendPost = undefined;
+
+var _helpers = __webpack_require__(12);
+
+var API = 'http://localhost:' + _helpers.port + '/api';
+
+var sendPost = exports.sendPost = function sendPost(post) {
+  fetch(API + '/add', {
+    method: 'post',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(post)
+  }).catch(function (error) {
+    return console.log(error);
+  });
 };
+
+// export const addPost = post => ({
+//   type: 'ADD_POST',
+//   post,
+// });
 
 var setSortArticles = exports.setSortArticles = function setSortArticles(sort) {
   return {
@@ -110,6 +127,25 @@ var SortArticles = exports.SortArticles = {
   SHOW_THE_VERGE: 'SHOW_THE_VERGE',
   SHOW_THE_NEXT_WEB: 'SHOW_THE_NEXT_WEB',
   SHOW_ABC_NEWS: 'SHOW_ABC_NEWS'
+};
+
+var requestArticles = exports.requestArticles = function requestArticles() {
+  return function (dispatch) {
+    return fetch(API + '/articles').then(function (res) {
+      return res.json();
+    }).then(function (articles) {
+      dispatch(receiveArticles(articles));
+    }).catch(function (error) {
+      return console.log(error);
+    });
+  };
+};
+
+var receiveArticles = exports.receiveArticles = function receiveArticles(articles) {
+  return {
+    type: 'RECEIVE_ARTICLES',
+    articles: articles
+  };
 };
 
 /***/ }),
@@ -258,7 +294,6 @@ var articlesSchema = new Schema({
   title: String,
   description: String,
   url: String,
-  urlToImage: String,
   publishedAt: Date
 });
 
@@ -279,9 +314,12 @@ module.exports = require("winston");
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 var url = __webpack_require__(40);
 
-var fullUrl = function fullUrl(req) {
+var fullUrl = exports.fullUrl = function fullUrl(req) {
   return url.format({
     protocol: req.protocol,
     host: req.get('host'),
@@ -289,14 +327,13 @@ var fullUrl = function fullUrl(req) {
   });
 };
 
-var handleError = function handleError(text, next) {
+var handleError = exports.handleError = function handleError(text, next) {
   var err = new Error(text);
   err.status = 404;
   next(err);
 };
 
-exports.fullUrl = fullUrl;
-exports.handleError = handleError;
+var port = exports.port = '3000';
 
 /***/ }),
 /* 13 */
@@ -305,12 +342,15 @@ exports.handleError = handleError;
 "use strict";
 
 
+var _helpers = __webpack_require__(12);
+
 var express = __webpack_require__(4);
 var bodyParser = __webpack_require__(14);
 var cookieParser = __webpack_require__(15);
 var session = __webpack_require__(16);
 
 var passport = __webpack_require__(5);
+
 
 var app = express();
 
@@ -333,7 +373,7 @@ var api = __webpack_require__(43);
 
 app.set('view engine', 'pug');
 
-app.listen(3000, function () {
+app.listen(_helpers.port, function () {
   console.log('Example app listening on port 3000!');
 });
 
@@ -425,17 +465,18 @@ var _template = __webpack_require__(37);
 
 var _template2 = _interopRequireDefault(_template);
 
+var _helpers = __webpack_require__(12);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var express = __webpack_require__(4);
 var router = express.Router();
 
 var logger = __webpack_require__(39);
-var helpers = __webpack_require__(12);
-var fullUrl = helpers.fullUrl;
+
 
 router.use(function (req, res, next) {
-  logger.info(fullUrl(req));
+  logger.info((0, _helpers.fullUrl)(req));
   next();
 });
 
@@ -528,19 +569,25 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var articles = function articles() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _state2.default;
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments[1];
 
   switch (action.type) {
-    case 'ADD_POST':
-      return [].concat(_toConsumableArray(state), [{
-        id: action.post.id,
-        source: action.post.source,
-        author: action.post.author,
-        title: action.post.title,
-        description: action.post.description,
-        url: action.post.url
-      }]);
+    case 'RECEIVE_ARTICLES':
+      return [].concat(_toConsumableArray(action.articles));
+    // case 'ADD_POST':
+    //   return [
+    //     ...state,
+    //     {
+    //       id: action.post.id,
+    //       source: action.post.source,
+    //       author: action.post.author,
+    //       title: action.post.title,
+    //       description: action.post.description,
+    //       url: action.post.url,
+    //       publishedAt: action.post.publishedAt,
+    //     },
+    //   ];
     default:
       return state;
   }
@@ -929,6 +976,8 @@ var _articles2 = _interopRequireDefault(_articles);
 
 var _reactRouterDom = __webpack_require__(1);
 
+var _actions = __webpack_require__(3);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var getVisibleArticles = function getVisibleArticles(articles, sort) {
@@ -956,7 +1005,11 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-var VisibleArticles = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(_articles2.default));
+var mapDispatchToProps = {
+  requestArticles: _actions.requestArticles
+};
+
+var VisibleArticles = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_articles2.default);
 
 exports.default = VisibleArticles;
 
@@ -971,6 +1024,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -981,16 +1036,45 @@ var _post2 = _interopRequireDefault(_post);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (_ref) {
-  var articles = _ref.articles;
-  return _react2.default.createElement(
-    'section',
-    null,
-    articles.map(function (post, index) {
-      return _react2.default.createElement(_post2.default, { item: post, key: index });
-    })
-  );
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Articles = function (_Component) {
+  _inherits(Articles, _Component);
+
+  function Articles(props) {
+    _classCallCheck(this, Articles);
+
+    return _possibleConstructorReturn(this, (Articles.__proto__ || Object.getPrototypeOf(Articles)).call(this, props));
+  }
+
+  _createClass(Articles, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.requestArticles();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var articles = this.props.articles;
+
+      return _react2.default.createElement(
+        'section',
+        null,
+        articles.map(function (post, index) {
+          return _react2.default.createElement(_post2.default, { item: post, key: index });
+        })
+      );
+    }
+  }]);
+
+  return Articles;
+}(_react.Component);
+
+exports.default = Articles;
 
 /***/ }),
 /* 33 */
@@ -1140,7 +1224,8 @@ var AddPost = function (_Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       // add post
-      this.props.onSubmit(this.state.post);
+      (0, _actions.sendPost)(this.state.post);
+      this.props.requestArticles();
       // clear all field
       this.setState({
         post: {
@@ -1262,12 +1347,8 @@ var AddPost = function (_Component) {
   return AddPost;
 }(_react.Component);
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    onSubmit: function onSubmit(post) {
-      dispatch((0, _actions.addPost)(post));
-    }
-  };
+var mapDispatchToProps = {
+  requestArticles: _actions.requestArticles
 };
 
 AddPost = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(null, mapDispatchToProps)(AddPost));
@@ -1502,11 +1583,10 @@ module.exports = ensureLoggedIn;
 "use strict";
 
 
+var _helpers = __webpack_require__(12);
+
 var express = __webpack_require__(4);
 var router = express.Router();
-
-var helpers = __webpack_require__(12);
-var handleError = helpers.handleError;
 
 var Article = __webpack_require__(10);
 
@@ -1519,26 +1599,17 @@ router.post('/register', controllers.register);
 router.get('/logout', controllers.logout);
 
 // Verify login
-router.all('/', ensureLoggedIn);
-router.all('/*', ensureLoggedIn);
+// router.all('/', ensureLoggedIn);
+// router.all('/*', ensureLoggedIn);
 
-router.get('/', function (req, res, next) {
+router.get('/articles', function (req, res, next) {
   Article.find({}, function (err, articles) {
     // res.render('articles', { articles });
     res.send(articles);
   });
 });
 
-router.get('/:id', function (req, res, next) {
-  Article.find({ id: req.params.id }, function (err, articles) {
-    if (!articles.length) {
-      return handleError('Article Not Found', next);
-    }
-    res.render('article', { articles: articles });
-  });
-});
-
-router.post('/', function (req, res, next) {
+router.post('/add', function (req, res, next) {
   var article = new Article({
     id: req.body.id,
     source: req.body.source,
@@ -1546,24 +1617,32 @@ router.post('/', function (req, res, next) {
     title: req.body.title,
     description: req.body.description,
     url: req.body.url,
-    urlToImage: req.body.urlToImage,
     publishedAt: Date.now()
   });
   article.save(function (err, raw) {
-    if (err) handleError('Article Not Saved', next);
+    if (err) (0, _helpers.handleError)('Article Not Saved', next);
     res.send('Article was added');
+  });
+});
+
+router.get('/:id', function (req, res, next) {
+  Article.find({ id: req.params.id }, function (err, articles) {
+    if (!articles.length) {
+      return (0, _helpers.handleError)('Article Not Found', next);
+    }
+    res.render('article', { articles: articles });
   });
 });
 
 router.post('/:id', function (req, res, next) {
   if (req.body._method === 'put') {
     Article.update({ id: req.params.id }, { title: req.body.title, description: req.body.description }, function (err, raw) {
-      if (err) handleError('Article Not Updated', next);
+      if (err) (0, _helpers.handleError)('Article Not Updated', next);
       res.send('Article was updated');
     });
   } else if (req.body._method === 'delete') {
     Article.find({ id: req.params.id }).remove(function (err, raw) {
-      if (err) return handleError('Article Not Deleted', next);
+      if (err) return (0, _helpers.handleError)('Article Not Deleted', next);
       res.send('Article was deleted');
     });
   }

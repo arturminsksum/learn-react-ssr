@@ -8,7 +8,6 @@ const articlesSchema = new Schema({
   title: String,
   description: String,
   url: String,
-  urlToImage: String,
   publishedAt: Date,
 });
 

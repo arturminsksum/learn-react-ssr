@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
 const passport = require('./passport');
+import { port } from './helpers';
 
 const app = express();
 
@@ -28,7 +29,7 @@ const api = require('./routes/api');
 
 app.set('view engine', 'pug');
 
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log('Example app listening on port 3000!');
 });
 
