@@ -6,14 +6,22 @@ const handleError = helpers.handleError;
 
 const Article = require('../mongoose/models/article');
 
+const controllers = require('../passport/controllers');
 const ensureLoggedIn = require('../passport/auth');
 
+// Auth system
+router.post('/login', controllers.login);
+router.post('/register', controllers.register);
+router.get('/logout', controllers.logout);
+
+// Verify login
 router.all('/', ensureLoggedIn);
 router.all('/*', ensureLoggedIn);
 
 router.get('/', function(req, res, next) {
   Article.find({}, function(err, articles) {
-    res.render('articles', { articles });
+    // res.render('articles', { articles });
+    res.send(articles);
   });
 });
 

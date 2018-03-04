@@ -9,7 +9,7 @@ module.exports.login = function(req, res, next) {
       ? next(err)
       : user
         ? req.logIn(user, function(err) {
-            return err ? next(err) : res.redirect('/articles');
+            return err ? next(err) : res.redirect('/add');
           })
         : res.redirect('/');
   })(req, res, next);
@@ -31,7 +31,7 @@ module.exports.register = function(req, res, next) {
     return err
       ? next(err)
       : req.logIn(user, function(err) {
-          return err ? next(err) : res.redirect('/articles');
+          return err ? next(err) : res.redirect('/add');
         });
   });
 };

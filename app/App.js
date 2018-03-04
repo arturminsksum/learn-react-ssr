@@ -6,24 +6,30 @@ import Sort from './components/sort';
 import Footer from './components/footer';
 import VisibleArticles from './containers/visible-articles';
 import AddPost from './components/add-post';
+import Login from './pages/login';
 
 const App = () => (
   <Fragment>
     <Header />
-    <Switch>
-      <Route
-        exact
-        path="/"
-        component={() => (
-          <div>
-            <Sort />
-            <VisibleArticles />
-          </div>
-        )}
-      />
-      <Route path="/add" component={AddPost} />
-      <Redirect to="/" />
-    </Switch>
+    <div className="container">
+      <br />
+      <Switch>
+        <Route
+          exact
+          path="/"
+          component={() => (
+            <div>
+              <Sort />
+              <VisibleArticles />
+            </div>
+          )}
+        />
+        <Route path="/add" component={AddPost} />
+        <Route path="/login" component={Login} />
+        <Redirect to="/" />
+      </Switch>
+      <br />
+    </div>
     <Footer />
   </Fragment>
 );

@@ -11,9 +11,6 @@ import articlesApp from '../app/reducers';
 import App from '../app/App';
 import template from '../app/template';
 
-const Article = require('../mongoose/models/article');
-const controllers = require('../passport/controllers');
-
 const logger = require('../logger');
 const helpers = require('../helpers');
 const fullUrl = helpers.fullUrl;
@@ -52,10 +49,5 @@ router.get('/*', function(req, res, next) {
   //   preloadedState,
   // });
 });
-
-// Auth system
-router.post('/login', controllers.login);
-router.post('/register', controllers.register);
-router.get('/logout', controllers.logout);
 
 module.exports = router;

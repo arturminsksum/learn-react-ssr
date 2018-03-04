@@ -19,6 +19,9 @@ export default () => (
         <Link className="navbar-item" to="/add">
           Add Post
         </Link>
+        <Link className="navbar-item" to="/login">
+          LogIn
+        </Link>
       </div>
     </nav>
     <section className="hero is-primary">
