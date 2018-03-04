@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import Input from './input';
+import Input from '../components/input';
 import { requestArticles, sendPost } from '../actions';
 
 class AddPost extends Component {

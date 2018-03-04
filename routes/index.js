@@ -41,12 +41,6 @@ router.get('/*', function(req, res, next) {
   const preloadedState = store.getState();
 
   res.send(template(html, preloadedState));
-
-  // res.render('index', {
-  //   title: 'See articles',
-  //   body: html,
-  //   preloadedState,
-  // });
 });
 
 module.exports = router;

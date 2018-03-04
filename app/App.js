@@ -5,7 +5,7 @@ import Header from './components/header';
 import Sort from './components/sort';
 import Footer from './components/footer';
 import VisibleArticles from './containers/visible-articles';
-import AddPost from './components/add-post';
+import AddPost from './pages/add-post';
 import Login from './pages/login';
 
 const App = () => (

@@ -24,6 +24,8 @@ const mapDispatchToProps = {
   requestArticles,
 };
 
-const VisibleArticles = connect(mapStateToProps, mapDispatchToProps)(Articles);
+const VisibleArticles = withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Articles),
+);
 
 export default VisibleArticles;
