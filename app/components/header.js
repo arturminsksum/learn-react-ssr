@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
-import SortLink from '../containers/sort-link';
-import { SortArticles } from '../actions';
+import { handleLogout } from '../actions';
 
-let Header = ({ logged }) => (
+let Header = ({ logged, handleLogout, history }) => (
   <Fragment>
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
@@ -21,15 +20,19 @@ let Header = ({ logged }) => (
         <Link className="navbar-item" to="/add">
           Add Post
         </Link>
-        {/* {logged ? ( */}
-        <a className="navbar-item" href="/api/logout">
-          LogOut
-        </a>
-        {/* ) : ( */}
-        <Link className="navbar-item" to="/login">
-          LogIn
-        </Link>
-        {/* )} */}
+        {logged ? (
+          <a
+            className="navbar-item"
+            href="javascript:void(0)"
+            onClick={() => handleLogout(history)}
+          >
+            LogOut
+          </a>
+        ) : (
+          <Link className="navbar-item" to="/login">
+            LogIn
+          </Link>
+        )}
       </div>
     </nav>
     <section className="hero is-primary">
@@ -47,6 +50,10 @@ const mapStateToProps = state => ({
   logged: state.logged,
 });
 
-Header = connect(mapStateToProps, null)(Header);
+const mapDispatchToProps = {
+  handleLogout,
+};
+
+Header = withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
 
 export default Header;

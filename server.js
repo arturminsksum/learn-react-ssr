@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-
 const passport = require('./passport');
 import { port } from './helpers';
 
@@ -14,9 +13,9 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(
   session({
-    secret: 'SECRET',
+    secret: 'secret',
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: false,
   }),
 );
 
@@ -26,8 +25,6 @@ app.use(passport.session());
 
 const index = require('./routes/index');
 const api = require('./routes/api');
-
-app.set('view engine', 'pug');
 
 app.listen(port, function() {
   console.log('Example app listening on port 3000!');

@@ -3,7 +3,7 @@ const logged = (state = false, action) => {
     case 'LOG_IN':
       return action.login;
     case 'LOG_OUT':
-      return action.logout;
+      return !action.logout;
     default:
       return state;
   }

@@ -56,11 +56,12 @@ export const logOut = logout => ({
 });
 
 export const handleLogin = (formData, history) => dispatch => {
-  fetch('http://localhost:3000/api/login', {
-    method: 'post',
+  fetch(`${API}/login`, {
+    method: 'POST',
     body: JSON.stringify(formData),
+    credentials: 'same-origin',
     headers: {
-      Accept: 'application/json, text/plain, */*',
+      Accept: 'application/json',
       'Content-Type': 'application/json',
     },
   })
@@ -75,4 +76,13 @@ export const handleLogin = (formData, history) => dispatch => {
       return history.push('/');
     })
     .catch(error => console.error(error));
+};
+
+export const handleLogout = history => dispatch => {
+  fetch(`${API}/logout`, { method: 'GET', credentials: 'same-origin' }).then(
+    () => {
+      dispatch(logOut(true));
+      return history.push('/');
+    },
+  );
 };

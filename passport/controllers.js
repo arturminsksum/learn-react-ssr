@@ -7,9 +7,13 @@ module.exports.login = function(req, res, next) {
       ? next(err)
       : user
         ? req.logIn(user, function(err) {
-            return err ? next(err) : res.send(user);
+            if (err) {
+              return next(err);
+            }
+            console.log(req.isAuthenticated());
+            return res.send(user);
           })
-        : res.send({ error: 'Login failed' });
+        : res.send({ error: info.message });
   })(req, res, next);
 };
 
