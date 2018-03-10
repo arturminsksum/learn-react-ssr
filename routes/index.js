@@ -37,8 +37,11 @@ router.get('/*', function(req, res, next) {
     return res.redirect(context.url);
   }
 
+  console.log('isAuthenticated', req.isAuthenticated());
+
   // Grab the initial state from our Redux store
   const preloadedState = store.getState();
+  preloadedState.logged = req.isAuthenticated();
 
   res.send(template(html, preloadedState));
 });

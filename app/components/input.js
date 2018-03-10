@@ -6,7 +6,7 @@ export default ({ type = 'text', label, name, value = '', onChange }) => (
     <div className="control">
       <input
         className="input"
-        type="text"
+        type={type}
         value={value}
         placeholder={label}
         name={name}

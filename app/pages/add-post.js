@@ -38,8 +38,9 @@ class AddPost extends Component {
   handleSubmit(e) {
     e.preventDefault();
     // add post
-    sendPost(this.state.post);
-    this.props.requestArticles();
+    sendPost(this.state.post)
+      .then(() => this.props.requestArticles())
+      .catch(error => console.error(error));
     // clear all field
     this.setState({
       post: {

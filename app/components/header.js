@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import SortLink from '../containers/sort-link';
 import { SortArticles } from '../actions';
 
-export default () => (
+let Header = ({ logged }) => (
   <Fragment>
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
@@ -19,12 +21,15 @@ export default () => (
         <Link className="navbar-item" to="/add">
           Add Post
         </Link>
-        <Link className="navbar-item" to="/login">
-          LogIn
-        </Link>
+        {/* {logged ? ( */}
         <a className="navbar-item" href="/api/logout">
           LogOut
         </a>
+        {/* ) : ( */}
+        <Link className="navbar-item" to="/login">
+          LogIn
+        </Link>
+        {/* )} */}
       </div>
     </nav>
     <section className="hero is-primary">
@@ -37,3 +42,11 @@ export default () => (
     </section>
   </Fragment>
 );
+
+const mapStateToProps = state => ({
+  logged: state.logged,
+});
+
+Header = connect(mapStateToProps, null)(Header);
+
+export default Header;
