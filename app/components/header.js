@@ -20,13 +20,7 @@ let Header = ({ logged, handleLogout, history }) => (
           Add Post
         </Link>
         {logged ? (
-          <a
-            className="navbar-item"
-            href="javascript:void(0)"
-            onClick={() => handleLogout(history)}
-          >
-            LogOut
-          </a>
+          ``
         ) : (
           <Fragment>
             <Link className="navbar-item" to="/login">
@@ -38,6 +32,20 @@ let Header = ({ logged, handleLogout, history }) => (
           </Fragment>
         )}
       </div>
+      {logged ? (
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <button
+              className=" button is-light"
+              onClick={() => handleLogout(history)}
+            >
+              LogOut
+            </button>
+          </div>
+        </div>
+      ) : (
+        ``
+      )}
     </nav>
     <section className="hero is-primary">
       <div className="hero-body">
