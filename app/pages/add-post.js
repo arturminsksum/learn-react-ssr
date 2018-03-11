@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Input from '../components/input';
 import { requestArticles, sendPost } from '../actions';
 
@@ -55,65 +55,88 @@ class AddPost extends Component {
   }
 
   render() {
+    const { logged } = this.props;
+
     return (
       <div className="container">
         <div className="columns">
           <div className="column is-half is-offset-one-quarter">
-            <form onSubmit={this.handleSubmit}>
-              <div className="field">
-                <label className="label">Subject</label>
-                <div className="control">
-                  <div className="select">
-                    <select
-                      name="id"
-                      value={this.state.post.id}
-                      onChange={this.handleChange}
-                    >
-                      <option value="the-verge">The Verge</option>
-                      <option value="the-next-web">The Next Web</option>
-                      <option value="abc-news">ABC News</option>
-                    </select>
+            {logged ? (
+              <form onSubmit={this.handleSubmit}>
+                <div className="field">
+                  <label className="label">Subject</label>
+                  <div className="control">
+                    <div className="select">
+                      <select
+                        name="id"
+                        value={this.state.post.id}
+                        onChange={this.handleChange}
+                      >
+                        <option value="the-verge">The Verge</option>
+                        <option value="the-next-web">The Next Web</option>
+                        <option value="abc-news">ABC News</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <Input
-                label="Source"
-                name="source"
-                onChange={this.handleChange}
-                value={this.state.post.source}
-              />
-              <Input
-                label="Author"
-                name="author"
-                onChange={this.handleChange}
-                value={this.state.post.author}
-              />
-              <Input
-                label="Title"
-                name="title"
-                onChange={this.handleChange}
-                value={this.state.post.title}
-              />
-              <Input
-                label="Description"
-                name="description"
-                onChange={this.handleChange}
-                value={this.state.post.description}
-              />
-              <Input
-                label="Link to article"
-                name="url"
-                onChange={this.handleChange}
-                value={this.state.post.url}
-              />
-              <div className="field">
-                <div className="control has-text-centered">
-                  <button type="submit" className="button is-primary">
-                    Add
-                  </button>
+                <Input
+                  label="Source"
+                  name="source"
+                  onChange={this.handleChange}
+                  value={this.state.post.source}
+                />
+                <Input
+                  label="Author"
+                  name="author"
+                  onChange={this.handleChange}
+                  value={this.state.post.author}
+                />
+                <Input
+                  label="Title"
+                  name="title"
+                  onChange={this.handleChange}
+                  value={this.state.post.title}
+                />
+                <Input
+                  label="Description"
+                  name="description"
+                  onChange={this.handleChange}
+                  value={this.state.post.description}
+                />
+                <Input
+                  label="Link to article"
+                  name="url"
+                  onChange={this.handleChange}
+                  value={this.state.post.url}
+                />
+                <div className="field">
+                  <div className="control has-text-centered">
+                    <button type="submit" className="button is-primary">
+                      Add
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            ) : (
+              <Fragment>
+                <p className="is-size-5">
+                  Please login or signup for adding posts
+                </p>
+                <br />
+                <div className="field is-grouped">
+                  <p className="control">
+                    <Link className="button is-primary" to="/login">
+                      LogIn
+                    </Link>
+                  </p>
+                  <p className="control">
+                    <Link className="button is-info" to="/signup">
+                      SignUp
+                    </Link>
+                  </p>
+                </div>
+              </Fragment>
+            )}
           </div>
         </div>
         <br />
@@ -122,9 +145,13 @@ class AddPost extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  logged: state.logged,
+});
+
 const mapDispatchToProps = {
   requestArticles,
 };
 
-AddPost = withRouter(connect(null, mapDispatchToProps)(AddPost));
+AddPost = withRouter(connect(mapStateToProps, mapDispatchToProps)(AddPost));
 export default AddPost;

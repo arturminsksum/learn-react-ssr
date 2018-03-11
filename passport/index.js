@@ -15,8 +15,8 @@ passport.use(
           : user
             ? password === user.password
               ? done(null, user)
-              : done(null, false, { message: 'Incorrect password.' })
-            : done(null, false, { message: 'Incorrect username.' });
+              : done(null, false, { error: 'Incorrect password.' })
+            : done(null, false, { error: 'Incorrect username.' });
       });
     },
   ),

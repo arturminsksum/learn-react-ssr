@@ -7,6 +7,7 @@ import Footer from './components/footer';
 import VisibleArticles from './containers/visible-articles';
 import AddPost from './pages/add-post';
 import Login from './pages/login';
+import Signup from './pages/signup';
 
 const App = () => (
   <Fragment>
@@ -26,6 +27,7 @@ const App = () => (
         />
         <Route path="/add" component={AddPost} />
         <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
         <Redirect to="/" />
       </Switch>
       <br />

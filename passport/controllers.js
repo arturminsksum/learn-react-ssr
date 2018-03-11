@@ -10,7 +10,6 @@ module.exports.login = function(req, res, next) {
             if (err) {
               return next(err);
             }
-            console.log(req.isAuthenticated());
             return res.send(user);
           })
         : res.send({ error: info.message });
@@ -19,7 +18,7 @@ module.exports.login = function(req, res, next) {
 
 module.exports.logout = function(req, res) {
   req.logout();
-  res.redirect('/');
+  res.end();
 };
 
 module.exports.register = function(req, res, next) {
@@ -31,7 +30,7 @@ module.exports.register = function(req, res, next) {
     return err
       ? next(err)
       : req.logIn(user, function(err) {
-          return err ? next(err) : res.redirect('/add');
+          return err ? next(err) : res.send(user);
         });
   });
 };

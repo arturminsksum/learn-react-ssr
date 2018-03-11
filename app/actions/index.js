@@ -86,3 +86,32 @@ export const handleLogout = history => dispatch => {
     },
   );
 };
+
+//registration
+export const signUp = signup => ({
+  type: 'SIGN_UP',
+  signup,
+});
+
+export const handleSignup = (formData, history) => dispatch => {
+  fetch(`${API}/signup`, {
+    method: 'POST',
+    body: JSON.stringify(formData),
+    credentials: 'same-origin',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      if (data.error) {
+        return console.error(data.error);
+      }
+      dispatch(signUp(true));
+      return history.push('/');
+    })
+    .catch(error => console.error(error));
+};

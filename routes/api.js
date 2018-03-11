@@ -4,22 +4,15 @@ const router = express.Router();
 import { handleError } from '../helpers';
 
 const Article = require('../mongoose/models/article');
-
 const controllers = require('../passport/controllers');
-const ensureLoggedIn = require('../passport/auth');
 
 // Auth system
 router.post('/login', controllers.login);
-router.post('/register', controllers.register);
 router.get('/logout', controllers.logout);
-
-// Verify login
-// router.all('/', ensureLoggedIn);
-// router.all('/*', ensureLoggedIn);
+router.post('/signup', controllers.register);
 
 router.get('/articles', function(req, res, next) {
   Article.find({}, function(err, articles) {
-    // res.render('articles', { articles });
     res.send(articles);
   });
 });

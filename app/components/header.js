@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import { handleLogout } from '../actions';
 
@@ -29,9 +28,14 @@ let Header = ({ logged, handleLogout, history }) => (
             LogOut
           </a>
         ) : (
-          <Link className="navbar-item" to="/login">
-            LogIn
-          </Link>
+          <Fragment>
+            <Link className="navbar-item" to="/login">
+              LogIn
+            </Link>
+            <Link className="navbar-item" to="/signup">
+              SignUp
+            </Link>
+          </Fragment>
         )}
       </div>
     </nav>
