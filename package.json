@@ -7,7 +7,18 @@
     "client": "webpack",
     "server": "webpack --config webpack.config.ssr.js",
     "start": "nodemon ssr.js",
-    "babel": "nodemon server.js --exec babel-node"
+    "babel": "nodemon server.js --exec babel-node",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "jest": {
+    "setupFiles": [
+      "./test/jestsetup.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "author": "",
   "license": "ISC",
@@ -37,9 +48,14 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.16.0",
     "babel-preset-stage-2": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.1",
+    "jest": "^22.4.2",
     "mongoose": "^5.0.3",
     "nodemon": "^1.14.11",
     "react-hot-loader": "^4.0.0",
+    "redux-mock-store": "^1.5.1",
     "webpack": "^3.11.0",
     "webpack-node-externals": "^1.6.0"
   }

@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Post should render Post correctly 1`] = `
+<Component
+  item={
+    Object {
+      "author": "ABC News",
+      "description": "Dr. Jennifer Ashton kicks off a month-long 'Water Challenge' to look at how drinking more water can affect your health.",
+      "id": "abc-news",
+      "source": "ABC News",
+      "title": "WATCH: What to know about the water challenge",
+      "url": "http://abcnews.go.com/GMA/video/water-challenge-52783678",
+    }
+  }
+>
+  <article
+    className="media box"
+  >
+    <div
+      className="media-content"
+    >
+      <div
+        className="content"
+      >
+        <a
+          className="title"
+          href="http://abcnews.go.com/GMA/video/water-challenge-52783678"
+        >
+          WATCH: What to know about the water challenge
+        </a>
+        <p>
+          <span>
+            Dr. Jennifer Ashton kicks off a month-long 'Water Challenge' to look at how drinking more water can affect your health.
+          </span>
+        </p>
+        <p>
+          <strong>
+            Source: 
+            ABC News
+             
+          </strong>
+          <small>
+            Author: 
+            ABC News
+             
+          </small>
+          <small>
+            Time: 
+          </small>
+        </p>
+      </div>
+    </div>
+  </article>
+</Component>
+`;
