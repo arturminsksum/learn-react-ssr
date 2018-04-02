@@ -18,9 +18,15 @@ export default class Articles extends Component {
   render() {
     const { articles } = this.props;
     return (
-      <section>
-        {articles.map((post, index) => <Post item={post} key={index} />)}
-      </section>
+      <div>
+        <h3 className="is-size-3">
+          Article amount: <span>{articles.length}</span>
+        </h3>
+        <br />
+        <section>
+          {articles.map((post, index) => <Post item={post} key={index} />)}
+        </section>
+      </div>
     );
   }
 }
