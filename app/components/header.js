@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { handleLogout } from '../actions';
 
@@ -66,6 +66,6 @@ const mapDispatchToProps = {
   handleLogout,
 };
 
-Header = withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
+Header = connect(mapStateToProps, mapDispatchToProps)(Header);
 
 export default Header;

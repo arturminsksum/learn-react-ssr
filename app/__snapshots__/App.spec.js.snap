@@ -2,7 +2,7 @@
 
 exports[`App should render App correctly 1`] = `
 <React.Fragment>
-  <withRouter(Connect(Header)) />
+  <Connect(Header) />
   <div
     className="container"
   >

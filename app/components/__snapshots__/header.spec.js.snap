@@ -1,0 +1,287 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should render Header correctly for logged user 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "blank",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <Connect(Header)>
+        <Header
+          handleLogout={[Function]}
+          logged={true}
+        >
+          <nav
+            aria-label="main navigation"
+            className="navbar"
+            role="navigation"
+          >
+            <div
+              className="navbar-brand"
+            >
+              <Link
+                className="navbar-item title"
+                replace={false}
+                to="/"
+              >
+                <a
+                  className="navbar-item title"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  ArchiNews
+                </a>
+              </Link>
+            </div>
+            <div
+              className="navbar-menu"
+            >
+              <Link
+                className="navbar-item"
+                replace={false}
+                to="/"
+              >
+                <a
+                  className="navbar-item"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  Home
+                </a>
+              </Link>
+              <Link
+                className="navbar-item"
+                replace={false}
+                to="/add"
+              >
+                <a
+                  className="navbar-item"
+                  href="/add"
+                  onClick={[Function]}
+                >
+                  Add Post
+                </a>
+              </Link>
+            </div>
+            <div
+              className="navbar-end"
+            >
+              <div
+                className="navbar-item"
+              >
+                <button
+                  className=" button is-light"
+                  onClick={[Function]}
+                >
+                  LogOut
+                </button>
+              </div>
+            </div>
+          </nav>
+          <section
+            className="hero is-primary"
+          >
+            <div
+              className="hero-body"
+            >
+              <div
+                className="container"
+              >
+                <h1
+                  className="title"
+                >
+                  Choose your channel
+                </h1>
+                <h2
+                  className="subtitle"
+                >
+                  All sources with English news
+                </h2>
+              </div>
+            </div>
+          </section>
+        </Header>
+      </Connect(Header)>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`Header should render Header correctly for unlogged user 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "blank",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <Connect(Header)>
+        <Header
+          handleLogout={[Function]}
+          logged={false}
+        >
+          <nav
+            aria-label="main navigation"
+            className="navbar"
+            role="navigation"
+          >
+            <div
+              className="navbar-brand"
+            >
+              <Link
+                className="navbar-item title"
+                replace={false}
+                to="/"
+              >
+                <a
+                  className="navbar-item title"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  ArchiNews
+                </a>
+              </Link>
+            </div>
+            <div
+              className="navbar-menu"
+            >
+              <Link
+                className="navbar-item"
+                replace={false}
+                to="/"
+              >
+                <a
+                  className="navbar-item"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  Home
+                </a>
+              </Link>
+              <Link
+                className="navbar-item"
+                replace={false}
+                to="/add"
+              >
+                <a
+                  className="navbar-item"
+                  href="/add"
+                  onClick={[Function]}
+                >
+                  Add Post
+                </a>
+              </Link>
+              <Link
+                className="navbar-item"
+                replace={false}
+                to="/login"
+              >
+                <a
+                  className="navbar-item"
+                  href="/login"
+                  onClick={[Function]}
+                >
+                  LogIn
+                </a>
+              </Link>
+              <Link
+                className="navbar-item"
+                replace={false}
+                to="/signup"
+              >
+                <a
+                  className="navbar-item"
+                  href="/signup"
+                  onClick={[Function]}
+                >
+                  SignUp
+                </a>
+              </Link>
+            </div>
+          </nav>
+          <section
+            className="hero is-primary"
+          >
+            <div
+              className="hero-body"
+            >
+              <div
+                className="container"
+              >
+                <h1
+                  className="title"
+                >
+                  Choose your channel
+                </h1>
+                <h2
+                  className="subtitle"
+                >
+                  All sources with English news
+                </h2>
+              </div>
+            </div>
+          </section>
+        </Header>
+      </Connect(Header)>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
