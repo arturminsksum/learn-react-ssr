@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link should render clickable link 1`] = `
+<li>
+  <a
+    href=""
+    onClick={[Function]}
+  />
+</li>
+`;
+
+exports[`Link should render non-clickable link 1`] = `
+<li
+  className="is-active"
+>
+  <a
+    href="javascript:void(0)"
+  />
+</li>
+`;
