@@ -8,27 +8,29 @@ exports[`App should render App correctly 1`] = `
   >
     <br />
     <Switch>
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/"
-      />
-      <Route
-        component={[Function]}
-        path="/add"
-      />
-      <Route
-        component={[Function]}
-        path="/login"
-      />
-      <Route
-        component={[Function]}
-        path="/signup"
-      />
-      <Redirect
-        push={false}
-        to="/"
-      />
+      <Switch>
+        <Route
+          exact={true}
+          key="0"
+          path="/"
+          render={[Function]}
+        />
+        <Route
+          key="1"
+          path="/add"
+          render={[Function]}
+        />
+        <Route
+          key="2"
+          path="/login"
+          render={[Function]}
+        />
+        <Route
+          key="3"
+          path="/signup"
+          render={[Function]}
+        />
+      </Switch>
     </Switch>
     <br />
   </div>
