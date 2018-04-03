@@ -1,0 +1,521 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddPost should render AddPost correctly for logged user 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "blank",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <withRouter(Connect(AddPost))>
+        <Route
+          render={[Function]}
+        >
+          <Connect(AddPost)
+            history={
+              Object {
+                "action": "POP",
+                "block": [Function],
+                "createHref": [Function],
+                "go": [Function],
+                "goBack": [Function],
+                "goForward": [Function],
+                "length": 1,
+                "listen": [Function],
+                "location": Object {
+                  "hash": "",
+                  "pathname": "blank",
+                  "search": "",
+                  "state": undefined,
+                },
+                "push": [Function],
+                "replace": [Function],
+              }
+            }
+            location={
+              Object {
+                "hash": "",
+                "pathname": "blank",
+                "search": "",
+                "state": undefined,
+              }
+            }
+            match={
+              Object {
+                "isExact": false,
+                "params": Object {},
+                "path": "/",
+                "url": "/",
+              }
+            }
+          >
+            <AddPost
+              history={
+                Object {
+                  "action": "POP",
+                  "block": [Function],
+                  "createHref": [Function],
+                  "go": [Function],
+                  "goBack": [Function],
+                  "goForward": [Function],
+                  "length": 1,
+                  "listen": [Function],
+                  "location": Object {
+                    "hash": "",
+                    "pathname": "blank",
+                    "search": "",
+                    "state": undefined,
+                  },
+                  "push": [Function],
+                  "replace": [Function],
+                }
+              }
+              location={
+                Object {
+                  "hash": "",
+                  "pathname": "blank",
+                  "search": "",
+                  "state": undefined,
+                }
+              }
+              logged={true}
+              match={
+                Object {
+                  "isExact": false,
+                  "params": Object {},
+                  "path": "/",
+                  "url": "/",
+                }
+              }
+              requestArticles={[Function]}
+            >
+              <div
+                className="container"
+              >
+                <div
+                  className="columns"
+                >
+                  <div
+                    className="column is-half is-offset-one-quarter"
+                  >
+                    <form
+                      onSubmit={[Function]}
+                    >
+                      <div
+                        className="field"
+                      >
+                        <label
+                          className="label"
+                        >
+                          Subject
+                        </label>
+                        <div
+                          className="control"
+                        >
+                          <div
+                            className="select"
+                          >
+                            <select
+                              name="id"
+                              onChange={[Function]}
+                              value="abc-news"
+                            >
+                              <option
+                                value="the-verge"
+                              >
+                                The Verge
+                              </option>
+                              <option
+                                value="the-next-web"
+                              >
+                                The Next Web
+                              </option>
+                              <option
+                                value="abc-news"
+                              >
+                                ABC News
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <Component
+                        label="Source"
+                        name="source"
+                        onChange={[Function]}
+                        value="ABC News"
+                      >
+                        <div
+                          className="field"
+                        >
+                          <label
+                            className="label"
+                          >
+                            Source
+                          </label>
+                          <div
+                            className="control"
+                          >
+                            <input
+                              className="input"
+                              name="source"
+                              onChange={[Function]}
+                              placeholder="Source"
+                              type="text"
+                              value="ABC News"
+                            />
+                          </div>
+                        </div>
+                      </Component>
+                      <Component
+                        label="Author"
+                        name="author"
+                        onChange={[Function]}
+                        value="ABC News"
+                      >
+                        <div
+                          className="field"
+                        >
+                          <label
+                            className="label"
+                          >
+                            Author
+                          </label>
+                          <div
+                            className="control"
+                          >
+                            <input
+                              className="input"
+                              name="author"
+                              onChange={[Function]}
+                              placeholder="Author"
+                              type="text"
+                              value="ABC News"
+                            />
+                          </div>
+                        </div>
+                      </Component>
+                      <Component
+                        label="Title"
+                        name="title"
+                        onChange={[Function]}
+                        value="WATCH: What to know about the water challenge"
+                      >
+                        <div
+                          className="field"
+                        >
+                          <label
+                            className="label"
+                          >
+                            Title
+                          </label>
+                          <div
+                            className="control"
+                          >
+                            <input
+                              className="input"
+                              name="title"
+                              onChange={[Function]}
+                              placeholder="Title"
+                              type="text"
+                              value="WATCH: What to know about the water challenge"
+                            />
+                          </div>
+                        </div>
+                      </Component>
+                      <Component
+                        label="Description"
+                        name="description"
+                        onChange={[Function]}
+                        value="Dr. Jennifer Ashton kicks off a month-long 'Water Challenge' to look at how drinking more water can affect your health."
+                      >
+                        <div
+                          className="field"
+                        >
+                          <label
+                            className="label"
+                          >
+                            Description
+                          </label>
+                          <div
+                            className="control"
+                          >
+                            <input
+                              className="input"
+                              name="description"
+                              onChange={[Function]}
+                              placeholder="Description"
+                              type="text"
+                              value="Dr. Jennifer Ashton kicks off a month-long 'Water Challenge' to look at how drinking more water can affect your health."
+                            />
+                          </div>
+                        </div>
+                      </Component>
+                      <Component
+                        label="Link to article"
+                        name="url"
+                        onChange={[Function]}
+                        value="http://abcnews.go.com/GMA/video/water-challenge-52783678"
+                      >
+                        <div
+                          className="field"
+                        >
+                          <label
+                            className="label"
+                          >
+                            Link to article
+                          </label>
+                          <div
+                            className="control"
+                          >
+                            <input
+                              className="input"
+                              name="url"
+                              onChange={[Function]}
+                              placeholder="Link to article"
+                              type="text"
+                              value="http://abcnews.go.com/GMA/video/water-challenge-52783678"
+                            />
+                          </div>
+                        </div>
+                      </Component>
+                      <div
+                        className="field"
+                      >
+                        <div
+                          className="control has-text-centered"
+                        >
+                          <button
+                            className="button is-primary"
+                            type="submit"
+                          >
+                            Add
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <br />
+              </div>
+            </AddPost>
+          </Connect(AddPost)>
+        </Route>
+      </withRouter(Connect(AddPost))>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`AddPost should render AddPost correctly for unlogged user 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "blank",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <withRouter(Connect(AddPost))>
+        <Route
+          render={[Function]}
+        >
+          <Connect(AddPost)
+            history={
+              Object {
+                "action": "POP",
+                "block": [Function],
+                "createHref": [Function],
+                "go": [Function],
+                "goBack": [Function],
+                "goForward": [Function],
+                "length": 1,
+                "listen": [Function],
+                "location": Object {
+                  "hash": "",
+                  "pathname": "blank",
+                  "search": "",
+                  "state": undefined,
+                },
+                "push": [Function],
+                "replace": [Function],
+              }
+            }
+            location={
+              Object {
+                "hash": "",
+                "pathname": "blank",
+                "search": "",
+                "state": undefined,
+              }
+            }
+            match={
+              Object {
+                "isExact": false,
+                "params": Object {},
+                "path": "/",
+                "url": "/",
+              }
+            }
+          >
+            <AddPost
+              history={
+                Object {
+                  "action": "POP",
+                  "block": [Function],
+                  "createHref": [Function],
+                  "go": [Function],
+                  "goBack": [Function],
+                  "goForward": [Function],
+                  "length": 1,
+                  "listen": [Function],
+                  "location": Object {
+                    "hash": "",
+                    "pathname": "blank",
+                    "search": "",
+                    "state": undefined,
+                  },
+                  "push": [Function],
+                  "replace": [Function],
+                }
+              }
+              location={
+                Object {
+                  "hash": "",
+                  "pathname": "blank",
+                  "search": "",
+                  "state": undefined,
+                }
+              }
+              logged={false}
+              match={
+                Object {
+                  "isExact": false,
+                  "params": Object {},
+                  "path": "/",
+                  "url": "/",
+                }
+              }
+              requestArticles={[Function]}
+            >
+              <div
+                className="container"
+              >
+                <div
+                  className="columns"
+                >
+                  <div
+                    className="column is-half is-offset-one-quarter"
+                  >
+                    <p
+                      className="is-size-5"
+                    >
+                      Please login or signup for adding posts
+                    </p>
+                    <br />
+                    <div
+                      className="field is-grouped"
+                    >
+                      <p
+                        className="control"
+                      >
+                        <Link
+                          className="button is-primary"
+                          replace={false}
+                          to="/login"
+                        >
+                          <a
+                            className="button is-primary"
+                            href="/login"
+                            onClick={[Function]}
+                          >
+                            LogIn
+                          </a>
+                        </Link>
+                      </p>
+                      <p
+                        className="control"
+                      >
+                        <Link
+                          className="button is-info"
+                          replace={false}
+                          to="/signup"
+                        >
+                          <a
+                            className="button is-info"
+                            href="/signup"
+                            onClick={[Function]}
+                          >
+                            SignUp
+                          </a>
+                        </Link>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <br />
+              </div>
+            </AddPost>
+          </Connect(AddPost)>
+        </Route>
+      </withRouter(Connect(AddPost))>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

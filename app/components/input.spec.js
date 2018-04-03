@@ -7,7 +7,6 @@ describe('Input', () => {
   );
   const label = wrapper.find('label');
   const input = wrapper.find('input');
-  console.log(wrapper.debug());
 
   it('should render label', () => {
     expect(label.text()).toEqual('Password');

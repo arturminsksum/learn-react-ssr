@@ -1,18 +1,13 @@
 import React from 'react';
-import configureStore from 'redux-mock-store';
-import { Provider } from 'react-redux';
 
 import Articles from './articles';
-
-const mockStore = configureStore();
+import articles from '../state.json';
+import { requestArticles } from '../actions';
 
 describe('Articles', () => {
   it('should render Articles correctly', () => {
-    const store = mockStore({ articles: [] });
-    const wrapper = shallow(
-      <Provider store={store}>
-        <Articles />
-      </Provider>,
+    const wrapper = mount(
+      <Articles articles={articles} requestArticles={requestArticles} />,
     );
     expect(wrapper).toMatchSnapshot();
   });

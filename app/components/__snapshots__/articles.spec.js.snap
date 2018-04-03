@@ -1,3 +1,220 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Articles should render Articles correctly 1`] = `<Articles />`;
+exports[`Articles should render Articles correctly 1`] = `
+<Articles
+  articles={
+    Array [
+      Object {
+        "author": "Thuy Ong",
+        "description": "Facebook’s new privacy center tool is a response the upcoming General Data Protection Regulation which will be introduced in May",
+        "id": "the-verge",
+        "publishedAt": "2018-01-29T12:10:18Z",
+        "source": "The Verge",
+        "title": "Facebook begins privacy push ahead of tough new European law",
+        "url": "https://www.theverge.com/2018/1/29/16944304/facebook-privacy-eu-law-general-data-protection-regulation",
+      },
+      Object {
+        "author": "Mix",
+        "description": "Earlier in January we wrote about a quirky new trend: cryptocurrency mystery boxes you can order online to get a random selection of digital coins.
+
+CBlocks – the company we spoke ...",
+        "id": "the-next-web",
+        "publishedAt": "2018-01-29T11:49:06Z",
+        "source": "The Next Web",
+        "title": "We got a cryptocurrency mystery box – but you probably shouldn't",
+        "url": "https://thenextweb.com/hardfork/2018/01/29/cryptocurrency-mystery-box-review/",
+      },
+      Object {
+        "author": "ABC",
+        "description": "Ronda Rousey stayed silent as she pointed from the ring toward the WrestleMania logo that hung in the rafters. Without saying a word, the MMA great made clear she was signaling her wrestling debut at WWE's signature event. Rousey wants her WrestleMania moment…",
+        "id": "abc-news",
+        "publishedAt": "2018-01-29T22:01:09Z",
+        "source": "ABC News",
+        "title": "Rousey's WWE deal gets ex-UFC star back in bright spotlight",
+        "url": "http://abcnews.go.com/Entertainment/wireStory/rouseys-wwe-deal-ufc-star-back-bright-spotlight-52691202",
+      },
+    ]
+  }
+  requestArticles={[Function]}
+>
+  <div>
+    <h3
+      className="is-size-3"
+    >
+      Article amount: 
+      <span>
+        3
+      </span>
+    </h3>
+    <br />
+    <section>
+      <Component
+        item={
+          Object {
+            "author": "Thuy Ong",
+            "description": "Facebook’s new privacy center tool is a response the upcoming General Data Protection Regulation which will be introduced in May",
+            "id": "the-verge",
+            "publishedAt": "2018-01-29T12:10:18Z",
+            "source": "The Verge",
+            "title": "Facebook begins privacy push ahead of tough new European law",
+            "url": "https://www.theverge.com/2018/1/29/16944304/facebook-privacy-eu-law-general-data-protection-regulation",
+          }
+        }
+        key="0"
+      >
+        <article
+          className="media box"
+        >
+          <div
+            className="media-content"
+          >
+            <div
+              className="content"
+            >
+              <a
+                className="title"
+                href="https://www.theverge.com/2018/1/29/16944304/facebook-privacy-eu-law-general-data-protection-regulation"
+              >
+                Facebook begins privacy push ahead of tough new European law
+              </a>
+              <p>
+                <span>
+                  Facebook’s new privacy center tool is a response the upcoming General Data Protection Regulation which will be introduced in May
+                </span>
+              </p>
+              <p>
+                <strong>
+                  Source: 
+                  The Verge
+                   
+                </strong>
+                <small>
+                  Author: 
+                  Thuy Ong
+                   
+                </small>
+                <small>
+                  Time: 
+                  2018-01-29T12:10:18Z
+                </small>
+              </p>
+            </div>
+          </div>
+        </article>
+      </Component>
+      <Component
+        item={
+          Object {
+            "author": "Mix",
+            "description": "Earlier in January we wrote about a quirky new trend: cryptocurrency mystery boxes you can order online to get a random selection of digital coins.
+
+CBlocks – the company we spoke ...",
+            "id": "the-next-web",
+            "publishedAt": "2018-01-29T11:49:06Z",
+            "source": "The Next Web",
+            "title": "We got a cryptocurrency mystery box – but you probably shouldn't",
+            "url": "https://thenextweb.com/hardfork/2018/01/29/cryptocurrency-mystery-box-review/",
+          }
+        }
+        key="1"
+      >
+        <article
+          className="media box"
+        >
+          <div
+            className="media-content"
+          >
+            <div
+              className="content"
+            >
+              <a
+                className="title"
+                href="https://thenextweb.com/hardfork/2018/01/29/cryptocurrency-mystery-box-review/"
+              >
+                We got a cryptocurrency mystery box – but you probably shouldn't
+              </a>
+              <p>
+                <span>
+                  Earlier in January we wrote about a quirky new trend: cryptocurrency mystery boxes you can order online to get a random selection of digital coins.
+
+CBlocks – the company we spoke ...
+                </span>
+              </p>
+              <p>
+                <strong>
+                  Source: 
+                  The Next Web
+                   
+                </strong>
+                <small>
+                  Author: 
+                  Mix
+                   
+                </small>
+                <small>
+                  Time: 
+                  2018-01-29T11:49:06Z
+                </small>
+              </p>
+            </div>
+          </div>
+        </article>
+      </Component>
+      <Component
+        item={
+          Object {
+            "author": "ABC",
+            "description": "Ronda Rousey stayed silent as she pointed from the ring toward the WrestleMania logo that hung in the rafters. Without saying a word, the MMA great made clear she was signaling her wrestling debut at WWE's signature event. Rousey wants her WrestleMania moment…",
+            "id": "abc-news",
+            "publishedAt": "2018-01-29T22:01:09Z",
+            "source": "ABC News",
+            "title": "Rousey's WWE deal gets ex-UFC star back in bright spotlight",
+            "url": "http://abcnews.go.com/Entertainment/wireStory/rouseys-wwe-deal-ufc-star-back-bright-spotlight-52691202",
+          }
+        }
+        key="2"
+      >
+        <article
+          className="media box"
+        >
+          <div
+            className="media-content"
+          >
+            <div
+              className="content"
+            >
+              <a
+                className="title"
+                href="http://abcnews.go.com/Entertainment/wireStory/rouseys-wwe-deal-ufc-star-back-bright-spotlight-52691202"
+              >
+                Rousey's WWE deal gets ex-UFC star back in bright spotlight
+              </a>
+              <p>
+                <span>
+                  Ronda Rousey stayed silent as she pointed from the ring toward the WrestleMania logo that hung in the rafters. Without saying a word, the MMA great made clear she was signaling her wrestling debut at WWE's signature event. Rousey wants her WrestleMania moment…
+                </span>
+              </p>
+              <p>
+                <strong>
+                  Source: 
+                  ABC News
+                   
+                </strong>
+                <small>
+                  Author: 
+                  ABC
+                   
+                </small>
+                <small>
+                  Time: 
+                  2018-01-29T22:01:09Z
+                </small>
+              </p>
+            </div>
+          </div>
+        </article>
+      </Component>
+    </section>
+  </div>
+</Articles>
+`;
